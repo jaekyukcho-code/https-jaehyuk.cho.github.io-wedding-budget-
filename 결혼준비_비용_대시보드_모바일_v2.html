@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1d1715">
+<meta name="description" content="결혼준비 비용 대시보드: 총 예산, 납부 현황, 잔금, 지출 내역을 모바일에서 한눈에 관리합니다.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="결혼준비 비용">
+<link rel="icon" href="./icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<link rel="manifest" href="./manifest.json">
+<title>결혼준비 비용 대시보드</title>
+<style>
+:root{
+  --bg:#f6f1ee;
+  --bg-2:#efe4dd;
+  --card:#fffdfc;
+  --text:#201b1a;
+  --muted:#7a6f6a;
+  --line:#eaded8;
+  --dark:#1d1715;
+  --gold:#b88b63;
+  --gold-soft:#f3e7dc;
+  --rose:#d9b8aa;
+  --green:#2d7a5f;
+  --orange:#d08a2a;
+  --purple:#7461a8;
+  --red:#c75f5a;
+  --shadow:0 18px 40px rgba(35, 20, 17, 0.08);
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at top left,#fffaf7 0%,#f6f1ee 38%,#efe4dd 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Apple SD Gothic Neo",sans-serif}.app{max-width:760px;margin:auto;padding-bottom:90px}
+header{position:sticky;top:0;z-index:20;background:rgba(246,241,238,0.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:16px 18px 12px;border-bottom:1px solid rgba(26,21,20,0.05)}.head{display:flex;justify-content:space-between;align-items:center}.title{font-size:23px;font-weight:900;letter-spacing:-0.04em}.sub{font-size:12px;color:var(--muted);margin-top:4px;font-weight:500}
+.iconbtn{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,0.8);box-shadow:0 10px 20px rgba(32,27,26,0.04);font-size:18px}
+.main{padding:14px 14px 0}.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#201b1a 0%,#3a2b29 35%,#5e463f 100%);color:#fff;border-radius:28px;padding:22px 18px 18px;box-shadow:0 30px 60px rgba(33,24,21,0.22)}.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,0.06);filter:blur(4px)}.hero::before{width:180px;height:180px;right:-40px;top:-60px}.hero::after{width:140px;height:140px;left:-30px;bottom:-50px}.label{position:relative;z-index:1;font-size:12px;color:#f1d8c8;font-weight:600;letter-spacing:0.06em;text-transform:uppercase}.heroTotal{position:relative;z-index:1;font-size:33px;font-weight:900;letter-spacing:-0.05em;margin:8px 0 16px}.progress{position:relative;z-index:1;height:12px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.08);border-radius:999px;overflow:hidden}.progress div{height:100%;background:linear-gradient(90deg,#f7e9dc,#fff,#eac6a0);border-radius:999px;box-shadow:0 12px 28px rgba(255,255,255,0.38)}.heroFoot{position:relative;z-index:1;display:flex;justify-content:space-between;font-size:12px;color:#f9ece5;margin-top:10px}.heroFoot b{font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0 0}.card{background:linear-gradient(180deg,#fffdfc 0%,#fffaf8 100%);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow)}.klabel{font-size:12px;color:var(--muted);font-weight:600}.kpi{font-size:18px;font-weight:800;letter-spacing:-0.04em;margin-top:7px}.green{color:var(--green)}.orange{color:var(--orange)}.red{color:var(--red)}
+.section{margin-top:18px}.stitle{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px;font-size:17px;font-weight:900;letter-spacing:-0.03em}.small{font-size:11px;color:var(--muted);font-weight:600}
+.warning{background:linear-gradient(180deg,#fffaf3 0%,#fff5e7 100%);border:1px solid #f1ddbc;color:#7d5b2f;border-radius:18px;padding:12px 13px;font-size:11px;line-height:1.6;margin-top:14px;box-shadow:0 12px 20px rgba(180,131,72,0.08)}.warning b{color:#63461b}
+.toolbar{display:flex;gap:9px}.search{flex:1}.search input,.toolbar select{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px 12px;outline:none;color:var(--text);font-size:14px;box-shadow:0 8px 18px rgba(32,27,26,0.02)}.toolbar select{max-width:124px;background:linear-gradient(180deg,#fff,#fffaf8)}
+.list{display:grid;gap:10px;margin-top:12px}.item{background:linear-gradient(180deg,#fffdfc 0%,#fffaf8 100%);border:1px solid var(--line);border-radius:22px;padding:15px;box-shadow:0 12px 26px rgba(44,35,31,0.04);transition:transform 0.15s ease, box-shadow 0.15s ease}.item:active{transform:scale(0.995)}.top{display:flex;justify-content:space-between;gap:10px}.name{font-weight:850;font-size:15px;white-space:pre-line;letter-spacing:-0.03em}.vendor{font-size:11px;color:var(--muted);margin-top:4px;font-weight:500}.amount{text-align:right;font-size:15px;font-weight:850;white-space:nowrap;letter-spacing:-0.04em}.amount small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:2px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.chip{font-size:11px;padding:5px 9px;border-radius:999px;background:#f2efe9;color:#5d5753;font-weight:700}.done{background:#eaf7f1;color:var(--green)}.due{background:#fff4e1;color:var(--orange)}.todo{background:#f1ecff;color:var(--purple)}
+.details{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:11px}.detail{background:linear-gradient(180deg,#faf7f6 0%,#f7f1ee 100%);border:1px solid rgba(112,92,85,0.05);border-radius:12px;padding:8px}.detail span{display:block;font-size:9px;color:var(--muted)}.detail b{display:block;font-size:11px;margin-top:2px;font-weight:800}
+.note{font-size:11px;color:#645d5a;margin-top:9px;line-height:1.45;background:#faf7f3;border-radius:10px;padding:8px 9px;border:1px solid rgba(112,92,85,0.05)}.empty{padding:30px;text-align:center;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:18px;box-shadow:0 8px 20px rgba(32,27,26,0.02)}.footer{text-align:center;color:#a38f88;font-size:10px;margin:22px 0}
+.fab{position:fixed;right:18px;bottom:18px;z-index:30;border:0;border-radius:18px;background:linear-gradient(135deg,#1f1a19,#3d2f2a);color:#fff;padding:14px 18px;font-weight:900;box-shadow:0 18px 30px rgba(30,22,20,0.3);letter-spacing:-0.04em}@media(min-width:761px){.fab{right:calc((100vw - 760px)/2 + 18px)}}
+.overlay{position:fixed;inset:0;background:rgba(26,20,18,0.42);z-index:50;display:none;align-items:flex-end}.overlay.show{display:flex}.modal{background:linear-gradient(180deg,#fffdfc 0%,#fffaf7 100%);width:100%;max-width:760px;margin:auto;border-radius:26px 26px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto;box-shadow:0 -18px 40px rgba(24,16,14,0.12)}@media(min-width:761px){.overlay{align-items:center}.modal{border-radius:26px;max-height:85vh}}
+.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modal h2{font-size:19px;margin:0;letter-spacing:-0.04em}.close{border:0;background:#f4efe9;border-radius:12px;width:36px;height:36px;color:var(--text);font-size:18px}.form{display:grid;gap:10px}.field label{font-size:11px;color:var(--muted);display:block;margin-bottom:5px;font-weight:700}.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;outline:none;color:var(--text);box-shadow:inset 0 1px 2px rgba(29,23,21,0.02)}.moneygrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.actions{display:flex;gap:8px;margin-top:13px}.actions button{flex:1;padding:12px;border:0;border-radius:13px;font-weight:900;letter-spacing:-0.02em}.save{background:linear-gradient(135deg,#1d1715,#44332d);color:#fff;box-shadow:0 12px 24px rgba(29,23,21,0.18)}.delete{background:#fdf0ef;color:var(--red);border:1px solid rgba(199,95,90,0.08)}
+</style></head><body><div class="app">
+<header><div class="head"><div><div class="title">💍 결혼준비 비용</div><div class="sub">엑셀의 '납부완료(a+b)'와 '총액'을 기준으로 계산</div></div><button class="iconbtn" onclick="openSettings()">⚙️</button></div></header>
+<main class="main">
+<div class="hero"><div class="label">전체 총액</div><div class="heroTotal" id="total">0원</div><div class="progress"><div id="pbar"></div></div><div class="heroFoot"><span>실제 납부완료 <b id="paid">0원</b></span><span>잔여 <b id="remain">0원</b></span></div></div>
+<div class="warning">💡 <b>금액 기준을 명확히 했습니다.</b><br>납부완료금액은 엑셀의 <b>F열 '납부완료 (a+b)'</b>를 그대로 합산하고, 전체 총액은 <b>H열 '총액 (a+b+c)'</b>를 사용합니다. 잔여금액 = 총액 − 납부완료금액입니다.</div>
+<div class="grid">
+<div class="card"><div class="klabel">납부완료금액</div><div class="kpi green" id="paid2">0원</div></div>
+<div class="card"><div class="klabel">잔금 예정</div><div class="kpi red" id="balance">0원</div></div>
+<div class="card"><div class="klabel">계약금</div><div class="kpi" id="contract">0원</div></div>
+<div class="card"><div class="klabel">중도금</div><div class="kpi" id="interim">0원</div></div>
+</div>
+<section class="section"><div class="stitle">상태별 현황 <span class="small" id="summary"></span></div><div id="bars"></div></section>
+<section class="section"><div class="stitle">지출 내역 <span class="small" id="count"></span></div>
+<div class="toolbar"><div class="search"><input id="search" placeholder="항목·업체명 검색" oninput="renderList()"></div><select id="filter" onchange="renderList()"><option>전체</option><option>납부완료</option><option>잔금남음</option><option>미정</option></select></div><div class="list" id="list"></div></section>
+<div class="footer">수정사항은 이 휴대폰 브라우저에 자동 저장됩니다.</div>
+</main><button class="fab" onclick="openEditor(-1)">＋ 비용 추가</button></div>
+
+<div class="overlay" id="editor"><div class="modal"><div class="modalhead"><h2 id="modalTitle">비용 수정</h2><button class="close" onclick="closeEditor()">✕</button></div>
+<form class="form" onsubmit="saveItem(event)"><input type="hidden" id="editIndex">
+<div class="field"><label>항목명</label><input id="fItem" required></div><div class="field"><label>업체명</label><input id="fVendor"></div><div class="field"><label>지출일자</label><input id="fDate" type="date"></div>
+<div class="field"><label>금액 (엑셀 구조와 동일)</label><div class="moneygrid"><input id="fContract" type="number" min="0" step="1000" placeholder="계약금"><input id="fInterim" type="number" min="0" step="1000" placeholder="중도금"><input id="fPaid" type="number" min="0" step="1000" placeholder="납부완료"><input id="fBalance" type="number" min="0" step="1000" placeholder="잔금"></div></div>
+<div class="field"><label>총액</label><input id="fTotal" type="number" min="0" step="1000" placeholder="총액 (자동 계산 권장)"></div>
+<div class="field"><label>납부상태</label><select id="fStatus"><option>납부완료</option><option>잔금남음</option><option>미정</option></select></div><div class="field"><label>비고</label><textarea id="fNote" rows="3"></textarea></div>
+<div class="actions"><button type="button" class="delete" id="deleteBtn" onclick="deleteItem()">삭제</button><button class="save">저장</button></div></form></div></div>
+<div class="overlay" id="settings"><div class="modal"><div class="modalhead"><h2>설정</h2><button class="close" onclick="closeSettings()">✕</button></div>
+<div class="warning">원본 엑셀 기준으로 초기화하면 현재 휴대폰에서 수정한 내용은 사라집니다.</div><div class="actions"><button class="delete" onclick="resetData()">원본으로 초기화</button><button class="save" onclick="exportData()">데이터 백업</button></div></div></div>
+
+<script>
+const initialData=[{"item": "반지", "vendor": "제이버튼", "date": "2026-03-28", "contract": 660000.0, "interim": 1452000.0, "paid": 2112000.0, "balance": 0.0, "total": 2112000.0, "status": "납부완료", "note": "1/25 반지 계약금 (김효린)"}, {"item": "신혼여행(비행기)", "vendor": "여행사", "date": "2025-12-01", "contract": 2801600.0, "interim": 0.0, "paid": 2801600.0, "balance": 0.0, "total": 2801600.0, "status": "납부완료", "note": "총액 2,801,600원 (일시납)"}, {"item": "헤어변형(촬영용)", "vendor": "이슬", "date": "2026-01-17", "contract": 200000.0, "interim": 200000.0, "paid": 400000.0, "balance": 0.0, "total": 400000.0, "status": "납부완료", "note": ""}, {"item": "예복", "vendor": "청담아크로발레노", "date": "2026-01-20", "contract": 600000.0, "interim": 621000.0, "paid": 1221000.0, "balance": 0.0, "total": 1221000.0, "status": "납부완료", "note": ""}, {"item": "웨딩촬영 헬퍼비(5시간)", "vendor": "헬퍼이모님", "date": "2026-07-04", "contract": 0.0, "interim": 250000.0, "paid": 250000.0, "balance": 0.0, "total": 250000.0, "status": "납부완료", "note": ""}, {"item": "피부과", "vendor": "밴스의원", "date": "2026-06-22", "contract": 3000000.0, "interim": 0.0, "paid": 3000000.0, "balance": 0.0, "total": 3000000.0, "status": "납부완료", "note": ""}, {"item": "플래너(스드메)", "vendor": "베리굿", "date": "2025-12-27", "contract": 400400.0, "interim": 2307300.0, "paid": 2707700.0, "balance": 880000.0, "total": 3587700.0, "status": "잔금남음", "note": ""}, {"item": "예식장 식음료", "vendor": "엘리에나", "date": "2026-12-06", "contract": 0.0, "interim": 0.0, "paid": 0.0, "balance": 31035000.0, "total": 31035000.0, "status": "잔금남음", "note": "식음료 축의로 대체"}, {"item": "예식장 대관료", "vendor": "엘리에나", "date": "2026-01-15", "contract": 4000000.0, "interim": 0.0, "paid": 4000000.0, "balance": 9000000.0, "total": 13000000.0, "status": "잔금남음", "note": "잔금 5백만 중 아버지 지원 포함"}, {"item": "메이크업(촬영+본식)\n별도지출", "vendor": "에이바이봄", "date": "2026-02-04", "contract": 330000.0, "interim": 390000.0, "paid": 720000.0, "balance": 270000.0, "total": 990000.0, "status": "잔금남음", "note": "중도금 6/27(완료), 잔금 11/29"}, {"item": "신혼여행(리조트)", "vendor": "허니문리조트", "date": "2026-04-06", "contract": 400000.0, "interim": 0.0, "paid": 400000.0, "balance": 5900000.0, "total": 6300000.0, "status": "잔금남음", "note": ""}, {"item": "DVD", "vendor": "화이트모티브", "date": "2026-06-11", "contract": 100000.0, "interim": 0.0, "paid": 0.0, "balance": 740000.0, "total": 740000.0, "status": "잔금남음", "note": ""}, {"item": "혼주 메이크업(4명)", "vendor": "바이엘린", "date": "", "contract": 0.0, "interim": 0.0, "paid": 0.0, "balance": 880000.0, "total": 880000.0, "status": "잔금남음", "note": ""}, {"item": "혼주한복", "vendor": "미정", "date": "", "contract": 0.0, "interim": 0.0, "paid": 0.0, "balance": 0.0, "total": 0.0, "status": "미정", "note": ""}, {"item": "상견례", "vendor": "미정", "date": "", "contract": 500000.0, "interim": 0.0, "paid": 500000.0, "balance": 500000.0, "total": 1000000.0, "status": "잔금남음", "note": ""}, {"item": "청첩장", "vendor": "미정", "date": "", "contract": 0.0, "interim": 0.0, "paid": 0.0, "balance": 0.0, "total": 0.0, "status": "미정", "note": ""}, {"item": "(본식) 헬퍼비", "vendor": "헬퍼이모님", "date": "", "contract": 0.0, "interim": 0.0, "paid": 0.0, "balance": 0.0, "total": 0.0, "status": "미정", "note": ""}, {"item": "2부 드레스(별도)", "vendor": "미정", "date": "", "contract": 0.0, "interim": 0.0, "paid": 0.0, "balance": 550000.0, "total": 550000.0, "status": "미정", "note": ""}, {"item": "식전영상", "vendor": "미정", "date": "", "contract": 0.0, "interim": 0.0, "paid": 0.0, "balance": 0.0, "total": 0.0, "status": "미정", "note": ""}, {"item": "예물 시계", "vendor": "롤렉스", "date": "", "contract": 15000000.0, "interim": 0.0, "paid": 15000000.0, "balance": 15000000.0, "total": 30000000.0, "status": "잔금남음", "note": ""}];
+function normalizeSavedData(raw){if(!raw){return null;}try{const parsed=JSON.parse(raw);if(!Array.isArray(parsed)||parsed.length===0){return null;}const valid=parsed.filter(item=>item&&typeof item==='object');return valid.length?valid:null;}catch(e){return null;}}
+let data;try{const saved=normalizeSavedData(localStorage.getItem("weddingDashboardDataV2"));data=saved?saved:JSON.parse(JSON.stringify(initialData));if(!saved){localStorage.setItem("weddingDashboardDataV2",JSON.stringify(data));}}catch(e){data=JSON.parse(JSON.stringify(initialData));try{localStorage.setItem("weddingDashboardDataV2",JSON.stringify(data));}catch(_e){}}
+const won=n=>new Intl.NumberFormat("ko-KR").format(Math.round(Number(n)||0))+"원";
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+const totalOf=x=>Number(x.total)||((Number(x.contract)||0)+(Number(x.interim)||0)+(Number(x.balance)||0));
+function saveLocal(){localStorage.setItem("weddingDashboardDataV2",JSON.stringify(data))}
+function render(){
+ const total=data.reduce((s,x)=>s+totalOf(x),0),paid=data.reduce((s,x)=>s+(Number(x.paid)||0),0),remain=Math.max(0,total-paid);
+ const contract=data.reduce((s,x)=>s+(Number(x.contract)||0),0),interim=data.reduce((s,x)=>s+(Number(x.interim)||0),0),balance=data.reduce((s,x)=>s+(Number(x.balance)||0),0);
+ document.getElementById("total").textContent=won(total);document.getElementById("paid").textContent=won(paid);document.getElementById("remain").textContent=won(remain);document.getElementById("paid2").textContent=won(paid);document.getElementById("balance").textContent=won(balance);document.getElementById("contract").textContent=won(contract);document.getElementById("interim").textContent=won(interim);document.getElementById("pbar").style.width=(total?Math.min(100,paid/total*100):0)+"%";
+ const counts={납부완료:0,잔금남음:0,미정:0};data.forEach(x=>counts[x.status]=(counts[x.status]||0)+1);document.getElementById("summary").textContent=`완료 ${counts.납부완료||0} · 잔금 ${counts.잔금남음||0} · 미정 ${counts.미정||0}`;
+ const max=Math.max(...data.map(totalOf),1);document.getElementById("bars").innerHTML=data.slice().sort((a,b)=>totalOf(b)-totalOf(a)).slice(0,6).map(x=>`<div style="margin:10px 0"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span>${esc(x.item.replace(/\n/g," "))}</span><b>${won(totalOf(x))}</b></div><div style="height:9px;background:#eef0f3;border-radius:99px;overflow:hidden"><div style="width:${totalOf(x)/max*100}%;height:100%;background:#7357d9;border-radius:99px"></div></div></div>`).join("");
+ renderList();
+}
+function renderList(){const q=document.getElementById("search").value.toLowerCase(),f=document.getElementById("filter").value;const arr=data.map((x,i)=>({...x,_i:i})).filter(x=>(f==="전체"||x.status===f)&&(`${x.item} ${x.vendor} ${x.note}`).toLowerCase().includes(q));document.getElementById("count").textContent=arr.length+"개";document.getElementById("list").innerHTML=arr.length?arr.map(x=>`<div class="item" onclick="openEditor(${x._i})"><div class="top"><div><div class="name">${esc(x.item)}</div><div class="vendor">${esc(x.vendor||"업체 미정")}</div></div><div class="amount">${won(totalOf(x))}<small>총액</small></div></div><div class="chips"><span class="chip ${x.status==="납부완료"?"done":x.status==="잔금남음"?"due":"todo"}">${esc(x.status)}</span>${x.date?`<span class="chip">${x.date}</span>`:""}</div><div class="details"><div class="detail"><span>계약금</span><b>${won(x.contract)}</b></div><div class="detail"><span>중도금</span><b>${won(x.interim)}</b></div><div class="detail"><span>납부완료</span><b>${won(x.paid)}</b></div><div class="detail"><span>잔금</span><b>${won(x.balance)}</b></div></div>${x.note?`<div class="note">📝 ${esc(x.note)}</div>`:""}</div>`).join(""):`<div class="empty">조건에 맞는 항목이 없습니다.</div>`}
+function openEditor(i){document.getElementById("editor").classList.add("show");document.getElementById("editIndex").value=i;document.getElementById("modalTitle").textContent=i<0?"비용 추가":"비용 수정";document.getElementById("deleteBtn").style.display=i<0?"none":"block";const x=i<0?{item:"",vendor:"",date:"",contract:0,interim:0,paid:0,balance:0,total:0,status:"미정",note:""}:data[i];fItem.value=x.item;fVendor.value=x.vendor;fDate.value=x.date;fContract.value=x.contract;fInterim.value=x.interim;fPaid.value=x.paid;fBalance.value=x.balance;fTotal.value=x.total;fStatus.value=x.status;fNote.value=x.note}
+function closeEditor(){editor.classList.remove("show")}
+function saveItem(e){e.preventDefault();const i=+editIndex.value;const x={item:fItem.value,vendor:fVendor.value,date:fDate.value,contract:+fContract.value||0,interim:+fInterim.value||0,paid:+fPaid.value||0,balance:+fBalance.value||0,total:+fTotal.value||0,status:fStatus.value,note:fNote.value};if(!x.total)x.total=x.contract+x.interim+x.balance;if(i<0)data.push(x);else data[i]=x;saveLocal();closeEditor();render()}
+function deleteItem(){const i=+editIndex.value;if(i>=0&&confirm("삭제할까요?")){data.splice(i,1);saveLocal();closeEditor();render()}}
+function openSettings(){settings.classList.add("show")}function closeSettings(){settings.classList.remove("show")}
+function resetData(){if(confirm("엑셀 원본 기준으로 초기화할까요?")){data=JSON.parse(JSON.stringify(initialData));saveLocal();closeSettings();render()}}
+function exportData(){const b=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="결혼준비비용_백업.json";a.click()}
+const isSafeToRegisterSW = () => {
+  const protocolAllowed = location.protocol === 'https:' || location.protocol === 'http:';
+  const hostAllowed = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.hostname.length > 0;
+  return protocolAllowed && hostAllowed && location.protocol !== 'file:';
+};
+
+if ('serviceWorker' in navigator && isSafeToRegisterSW()) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+
+window.addEventListener('DOMContentLoaded', render);
+</script></body></html>
