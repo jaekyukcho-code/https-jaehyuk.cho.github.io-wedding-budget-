@@ -1,44 +1,6215 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="refresh" content="0; url=../결혼준비_비용_대시보드_모바일_v2.html" />
-  <title>결혼준비 비용 대시보드</title>
+  <base target="_top">
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#F8F5F2">
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="default"
+  >
+
+  <meta
+    name="apple-mobile-web-app-title"
+    content="J♡D Wedding"
+  >
+
+  <!-- iPhone 홈화면 아이콘 -->
+  <link
+    rel="apple-touch-icon"
+    href="https://jaekyukcho-code.github.io/wedding-icon/apple-touch-icon.png"
+  >
+
+  <!-- 브라우저 아이콘 -->
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://jaekyukcho-code.github.io/wedding-icon/apple-touch-icon.png"
+  >
+
+
   <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #f7efe9 0%, #efe0d8 100%);
-      font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
-      color: #241d1a;
+
+    :root{
+      --bg:#F8F5F2;
+      --card:#FFFFFF;
+
+      --text:#302B2C;
+      --muted:#8D8382;
+
+      --line:#EEE5E2;
+
+      --rose:#C77B82;
+      --rose-soft:#F5E4E5;
+      --rose-light:#FFF7F7;
+
+      --sage:#8EA493;
+      --sage-soft:#E7EFE9;
+
+      --shadow:0 8px 28px rgba(73,48,48,.06);
+
+      --nav-h:78px;
     }
-    .box {
-      text-align: center;
-      padding: 28px 22px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.8);
-      box-shadow: 0 18px 36px rgba(39, 28, 25, 0.08);
-      border: 1px solid rgba(120, 95, 88, 0.08);
+
+
+    *{
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
     }
-    .title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      margin-bottom: 8px;
+
+
+    html,
+    body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--text);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Apple SD Gothic Neo",
+        "Noto Sans KR",
+        "Malgun Gothic",
+        sans-serif;
     }
-    .sub {
-      font-size: 0.85rem;
-      color: #765f59;
+
+
+    body{
+      padding-top:env(safe-area-inset-top);
     }
+
+
+    button{
+      font-family:inherit;
+    }
+
+
+    .app{
+      max-width:980px;
+      margin:0 auto;
+
+      padding:
+        12px 11px
+        calc(var(--nav-h) + 34px);
+    }
+
+
+    .tabPage{
+      display:none;
+    }
+
+
+    .tabPage.active{
+      display:block;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+
+      padding:23px 18px;
+
+      border-radius:26px;
+      border:1px solid #F0E4E1;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fff 0%,
+          #FFF9F7 58%,
+          #F2E7E2 100%
+        );
+
+      box-shadow:var(--shadow);
+    }
+
+
+    .hero:after{
+      content:"";
+
+      position:absolute;
+
+      width:180px;
+      height:180px;
+
+      right:-90px;
+      top:-100px;
+
+      border-radius:50%;
+
+      background:#F0DCDD;
+
+      opacity:.7;
+    }
+
+
+    .eyebrow{
+      position:relative;
+      z-index:1;
+
+      color:var(--rose);
+
+      font-size:10px;
+      font-weight:800;
+
+      letter-spacing:.2em;
+    }
+
+
+    .names{
+      position:relative;
+      z-index:1;
+
+      margin-top:7px;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size:29px;
+      font-weight:600;
+    }
+
+
+    .venue{
+      position:relative;
+      z-index:1;
+
+      margin-top:7px;
+
+      color:var(--muted);
+
+      font-size:12px;
+    }
+
+
+    .heroBottom{
+      position:relative;
+      z-index:1;
+
+      display:flex;
+
+      justify-content:space-between;
+      align-items:flex-end;
+
+      gap:12px;
+
+      margin-top:22px;
+    }
+
+
+    .date{
+      font-size:15px;
+      font-weight:850;
+    }
+
+
+    .sync{
+      margin-top:5px;
+
+      color:var(--muted);
+
+      font-size:9px;
+      line-height:1.4;
+    }
+
+
+    .dday{
+      color:var(--rose);
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size:30px;
+      font-weight:700;
+
+      white-space:nowrap;
+    }
+
+
+    /* =========================
+       KPI
+    ========================= */
+
+
+    .kpis{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+
+      gap:8px;
+
+      margin-top:11px;
+    }
+
+
+    .kpi{
+      min-width:0;
+
+      padding:14px 11px;
+
+      border-radius:18px;
+      border:1px solid var(--line);
+
+      background:var(--card);
+    }
+
+
+    .kpiLabel{
+      color:var(--muted);
+
+      font-size:8px;
+      font-weight:700;
+
+      letter-spacing:.06em;
+    }
+
+
+    .kpiValue{
+      margin-top:7px;
+
+      overflow:hidden;
+
+      font-size:17px;
+      font-weight:850;
+
+      letter-spacing:-.04em;
+
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+
+
+    .kpiSub{
+      margin-top:4px;
+
+      color:var(--muted);
+
+      font-size:9px;
+    }
+
+
+    /* =========================
+       COMMON
+    ========================= */
+
+
+    .section{
+      margin-top:11px;
+    }
+
+
+    .sectionHead{
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      margin:4px 2px 10px;
+    }
+
+
+    .sectionTitle{
+      font-size:16px;
+      font-weight:850;
+    }
+
+
+    .sectionSub{
+      color:var(--muted);
+
+      font-size:9px;
+
+      letter-spacing:.1em;
+    }
+
+
+    .card{
+      padding:16px;
+
+      border:1px solid var(--line);
+      border-radius:20px;
+
+      background:var(--card);
+
+      box-shadow:
+        0 4px 18px
+        rgba(65,45,45,.035);
+    }
+
+
+    .card + .card{
+      margin-top:10px;
+    }
+
+
+    .cardTitle{
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      gap:8px;
+
+      margin-bottom:13px;
+
+      font-size:14px;
+      font-weight:850;
+    }
+
+
+    .cardTitle span{
+      color:var(--muted);
+
+      font-size:8px;
+
+      letter-spacing:.08em;
+    }
+
+
+    .progress{
+      width:100%;
+      height:8px;
+
+      overflow:hidden;
+
+      margin-top:12px;
+
+      border-radius:50px;
+
+      background:#F0EAE7;
+    }
+
+
+    .progressBar{
+      width:0;
+      height:100%;
+
+      border-radius:50px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--rose),
+          #DCA5A8
+        );
+
+      transition:width .4s ease;
+    }
+
+
+    .caption{
+      margin-top:8px;
+
+      color:var(--muted);
+
+      font-size:9px;
+      line-height:1.55;
+    }
+
+
+    .summaryGrid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+
+      gap:6px;
+    }
+
+
+    .summaryBox{
+      min-width:0;
+
+      padding:11px 6px;
+
+      text-align:center;
+
+      border-radius:14px;
+
+      background:#FAF7F5;
+    }
+
+
+    .summaryLabel{
+      color:var(--muted);
+
+      font-size:8px;
+    }
+
+
+    .summaryValue{
+      margin-top:5px;
+
+      overflow:hidden;
+
+      font-size:12px;
+      font-weight:850;
+
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+
+
+    .badge{
+      flex:0 0 auto;
+
+      padding:5px 7px;
+
+      border-radius:30px;
+
+      background:var(--rose-soft);
+
+      color:#A35D64;
+
+      font-size:8px;
+      font-weight:750;
+    }
+
+
+    .badge.green{
+      background:var(--sage-soft);
+      color:#607867;
+    }
+
+
+    .badge.gray{
+      background:#F2EEEE;
+      color:#827878;
+    }
+
+
+    .listRow{
+      display:flex;
+
+      align-items:center;
+
+      gap:9px;
+
+      padding:10px 0;
+
+      border-top:1px solid #F3ECE9;
+    }
+
+
+    .listRow:first-child{
+      padding-top:0;
+      border-top:0;
+    }
+
+
+    .dot{
+      flex:0 0 auto;
+
+      width:8px;
+      height:8px;
+
+      border-radius:50%;
+
+      background:var(--rose);
+    }
+
+
+    .dot.sage{
+      background:var(--sage);
+    }
+
+
+    .listMain{
+      min-width:0;
+      flex:1;
+    }
+
+
+    .listTitle{
+      overflow:hidden;
+
+      font-size:12px;
+      font-weight:750;
+
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+
+
+    .listSub{
+      margin-top:3px;
+
+      overflow:hidden;
+
+      color:var(--muted);
+
+      font-size:9px;
+
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+
+
+    .empty{
+      padding:11px 0;
+
+      color:var(--muted);
+
+      font-size:10px;
+    }
+
+
+    /* =========================
+       SMART PLANNER
+    ========================= */
+
+
+    .priorityBox{
+      padding:13px;
+
+      margin-bottom:8px;
+
+      border:1px solid #F0DEDA;
+      border-radius:16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #FFF8F6,
+          #F8EEEB
+        );
+    }
+
+
+    .priorityTop{
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      gap:8px;
+    }
+
+
+    .priorityTitle{
+      min-width:0;
+
+      font-size:12px;
+      font-weight:850;
+
+      line-height:1.4;
+    }
+
+
+    .priorityMeta{
+      margin-top:5px;
+
+      color:var(--muted);
+
+      font-size:9px;
+      line-height:1.5;
+    }
+
+
+    /* =========================
+       BUDGET
+    ========================= */
+
+
+    .budgetHero{
+      padding:15px;
+
+      margin-bottom:12px;
+
+      border:1px solid #F1E2DE;
+      border-radius:18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #FFF8F6,
+          #FBF1EF
+        );
+    }
+
+
+    .budgetHeroTop{
+      display:flex;
+
+      align-items:flex-start;
+      justify-content:space-between;
+
+      gap:10px;
+    }
+
+
+    .budgetHeroLabel{
+      color:var(--muted);
+
+      font-size:9px;
+    }
+
+
+    .budgetHeroValue{
+      margin-top:3px;
+
+      font-size:24px;
+      font-weight:850;
+
+      letter-spacing:-.05em;
+    }
+
+
+    .budgetRemaining{
+      padding:6px 9px;
+
+      border-radius:50px;
+
+      background:#fff;
+
+      color:#9A6166;
+
+      font-size:9px;
+      font-weight:800;
+
+      white-space:nowrap;
+    }
+
+
+    .categoryGrid{
+      display:grid;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:8px;
+    }
+
+
+    .categoryCard{
+      width:100%;
+      min-width:0;
+
+      padding:13px 11px;
+
+      text-align:left;
+
+      border:1px solid #EEE5E2;
+      border-radius:17px;
+
+      background:#fff;
+
+      color:var(--text);
+
+      cursor:pointer;
+
+      transition:.18s ease;
+    }
+
+
+    .categoryCard.active{
+      border-color:#D7A0A5;
+      background:var(--rose-light);
+    }
+
+
+    .categoryName{
+      overflow:hidden;
+
+      font-size:11px;
+      font-weight:850;
+
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+
+
+    .categoryTotal{
+      margin-top:7px;
+
+      overflow:hidden;
+
+      font-size:14px;
+      font-weight:850;
+
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+
+
+    .categoryMeta{
+      margin-top:5px;
+
+      color:var(--muted);
+
+      font-size:8px;
+      line-height:1.45;
+    }
+
+
+    .categoryCount{
+      margin-top:6px;
+
+      color:#9A6166;
+
+      font-size:8px;
+      font-weight:750;
+    }
+
+
+    .statusFilters{
+      display:grid;
+
+      grid-template-columns:repeat(2,1fr);
+
+      gap:8px;
+
+      margin-top:14px;
+    }
+
+
+    .filterBtn{
+      width:100%;
+      min-height:46px;
+
+      padding:11px 8px;
+
+      border:1px solid #E9DFDC;
+      border-radius:14px;
+
+      background:#FFFFFF;
+
+      color:#6F6665;
+
+      font-size:11px;
+      font-weight:800;
+
+      cursor:pointer;
+    }
+
+
+    .filterBtn.active{
+      border-color:#C77B82;
+      background:#F7E8E9;
+      color:#9B555C;
+    }
+
+
+    .filterResult{
+      display:flex;
+
+      justify-content:space-between;
+
+      margin:12px 1px 8px;
+
+      color:var(--muted);
+
+      font-size:9px;
+    }
+
+
+    .costItem{
+      padding:12px 0;
+
+      border-top:1px solid #F2EAE7;
+    }
+
+
+    .costItem:first-child{
+      padding-top:0;
+      border-top:0;
+    }
+
+
+    .costTop{
+      display:flex;
+
+      justify-content:space-between;
+
+      gap:8px;
+    }
+
+
+    .costName{
+      min-width:0;
+    }
+
+
+    .costName strong{
+      display:block;
+
+      overflow:hidden;
+
+      font-size:12px;
+
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+
+
+    .costName small{
+      display:block;
+
+      margin-top:3px;
+
+      color:var(--muted);
+
+      font-size:9px;
+    }
+
+
+    .costGrid{
+      display:grid;
+
+      grid-template-columns:repeat(3,1fr);
+
+      gap:5px;
+
+      margin-top:9px;
+    }
+
+
+    .costBox{
+      padding:8px 5px;
+
+      border-radius:10px;
+
+      background:#FAF7F5;
+    }
+
+
+    .costBox span{
+      display:block;
+
+      color:var(--muted);
+
+      font-size:7px;
+    }
+
+
+    .costBox strong{
+      display:block;
+
+      margin-top:3px;
+
+      font-size:9px;
+    }
+
+
+    /* =========================
+       CALENDAR
+    ========================= */
+
+
+    .calendarHead{
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      gap:8px;
+
+      margin-bottom:11px;
+    }
+
+
+    .calendarMonth{
+      flex:1;
+
+      text-align:center;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size:19px;
+      font-weight:700;
+    }
+
+
+    .calBtn{
+      min-height:40px;
+
+      padding:7px 12px;
+
+      border:0;
+      border-radius:30px;
+
+      background:#F8F2EF;
+
+      color:#766C6B;
+
+      font-size:10px;
+      font-weight:750;
+    }
+
+
+    .calendarSwipeHint{
+      margin:-2px 0 10px;
+
+      text-align:center;
+
+      color:#A79B99;
+
+      font-size:8px;
+    }
+
+
+    .calendarGrid{
+      display:grid;
+
+      grid-template-columns:repeat(7,1fr);
+
+      gap:3px;
+    }
+
+
+    #calendarGrid{
+      touch-action:pan-y;
+      will-change:transform,opacity;
+    }
+
+
+    .dow{
+      text-align:center;
+
+      color:var(--muted);
+
+      font-size:8px;
+
+      padding:4px 0;
+    }
+
+
+    .day{
+      min-height:56px;
+
+      padding:5px;
+
+      overflow:hidden;
+
+      border:1px solid #F0E8E5;
+      border-radius:11px;
+
+      background:#FFFEFD;
+    }
+
+
+    .day.muted{
+      opacity:.32;
+    }
+
+
+    .day.today{
+      border-color:#DDA8AB;
+      background:#FFF7F7;
+    }
+
+
+    .day.hasEvent{
+      cursor:pointer;
+    }
+
+
+    .dayNum{
+      font-size:8px;
+      font-weight:800;
+    }
+
+
+    .calEvent{
+      margin-top:3px;
+
+      padding:3px;
+
+      overflow:hidden;
+
+      border-radius:5px;
+
+      background:var(--rose-soft);
+
+      color:#91585D;
+
+      font-size:6.2px;
+
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+
+
+    .calEvent.sage{
+      background:var(--sage-soft);
+      color:#607867;
+    }
+
+
+    /* =========================
+       PREPARE
+    ========================= */
+
+
+    .bigPercent{
+      margin-bottom:9px;
+
+      color:var(--rose);
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size:36px;
+      font-weight:700;
+    }
+
+
+    .monthCards{
+      display:flex;
+
+      flex-direction:column;
+
+      gap:10px;
+
+      margin-top:11px;
+    }
+
+
+    .monthCard{
+      overflow:hidden;
+
+      border:1px solid var(--line);
+      border-radius:18px;
+
+      background:#fff;
+
+      transition:.18s ease;
+    }
+
+
+    .monthCard.current{
+      border-color:#D7A0A5;
+
+      background:#FFFBFB;
+
+      box-shadow:
+        0 0 0 1px rgba(199,123,130,.05),
+        0 6px 18px rgba(199,123,130,.08);
+    }
+
+
+    .monthHeader{
+      width:100%;
+
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      gap:10px;
+
+      padding:15px 14px;
+
+      border:0;
+
+      background:transparent;
+
+      color:var(--text);
+
+      text-align:left;
+
+      cursor:pointer;
+    }
+
+
+    .monthTitleArea{
+      min-width:0;
+      flex:1;
+    }
+
+
+    .monthTopLine{
+      display:flex;
+
+      align-items:center;
+
+      gap:7px;
+
+      flex-wrap:wrap;
+    }
+
+
+    .monthName{
+      font-size:14px;
+      font-weight:900;
+    }
+
+
+    .currentMonthBadge{
+      padding:4px 7px;
+
+      border-radius:30px;
+
+      background:var(--rose-soft);
+
+      color:#A35D64;
+
+      font-size:7px;
+      font-weight:850;
+    }
+
+
+    .monthSummary{
+      margin-top:5px;
+
+      color:var(--muted);
+
+      font-size:9px;
+      line-height:1.45;
+    }
+
+
+    .monthArrow{
+      flex:0 0 auto;
+
+      color:#9B8F8E;
+
+      font-size:15px;
+
+      transition:transform .2s ease;
+    }
+
+
+    .monthCard.open .monthArrow{
+      transform:rotate(180deg);
+    }
+
+
+    .monthBody{
+      display:none;
+
+      padding:0 14px 12px;
+    }
+
+
+    .monthCard.open .monthBody{
+      display:block;
+    }
+
+
+    .monthlyTask{
+      display:flex;
+
+      align-items:flex-start;
+
+      gap:9px;
+
+      padding:11px 0;
+
+      border-top:1px solid #F3ECE9;
+    }
+
+
+    .monthlyTask:first-child{
+      border-top:0;
+    }
+
+
+    .taskDate{
+      flex:0 0 42px;
+
+      padding:6px 4px;
+
+      text-align:center;
+
+      border-radius:10px;
+
+      background:#F8F3F1;
+
+      color:#8B7675;
+
+      font-size:9px;
+      font-weight:850;
+    }
+
+
+    .monthlyTask.done .taskDate{
+      background:var(--sage-soft);
+      color:#607867;
+    }
+
+
+    .monthlyTaskMain{
+      min-width:0;
+      flex:1;
+    }
+
+
+    .monthlyTaskTitle{
+      font-size:11px;
+      font-weight:800;
+
+      line-height:1.45;
+    }
+
+
+    .monthlyTask.done .monthlyTaskTitle{
+      color:#9A9291;
+
+      text-decoration:line-through;
+    }
+
+
+    .monthlyTaskMeta{
+      margin-top:4px;
+
+      color:var(--muted);
+
+      font-size:8px;
+      line-height:1.45;
+    }
+
+
+    .monthEmpty{
+      padding:12px 0 4px;
+
+      color:var(--muted);
+
+      font-size:9px;
+    }
+
+
+    /* =========================
+       MORE
+    ========================= */
+
+
+    .guestGrid{
+      display:grid;
+
+      grid-template-columns:repeat(2,1fr);
+
+      gap:7px;
+    }
+
+
+    .guestBox{
+      padding:12px 7px;
+
+      text-align:center;
+
+      border-radius:14px;
+
+      background:#FAF7F5;
+    }
+
+
+    .guestLabel{
+      color:var(--muted);
+
+      font-size:8px;
+    }
+
+
+    .guestValue{
+      margin-top:4px;
+
+      font-size:18px;
+      font-weight:850;
+    }
+
+
+    .softBox{
+      padding:11px;
+
+      margin-bottom:7px;
+
+      border-radius:14px;
+
+      background:#FAF6F3;
+
+      color:#625A59;
+
+      font-size:10px;
+      line-height:1.6;
+    }
+
+
+    /* =========================
+       BOTTOM NAV
+    ========================= */
+
+
+    .bottomNav{
+      position:fixed;
+
+      z-index:100;
+
+      left:0;
+      right:0;
+      bottom:0;
+
+      padding:
+        7px 9px
+        calc(
+          env(safe-area-inset-bottom)
+          + 8px
+        );
+
+      background:rgba(248,245,242,.94);
+
+      border-top:1px solid #EEE5E2;
+
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+    }
+
+
+    .bottomNavInner{
+      display:grid;
+
+      grid-template-columns:repeat(5,1fr);
+
+      max-width:600px;
+
+      margin:0 auto;
+
+      padding:5px;
+
+      border:1px solid #EFE5E2;
+      border-radius:21px;
+
+      background:rgba(255,255,255,.88);
+    }
+
+
+    .tabBtn{
+      min-height:52px;
+
+      padding:6px 2px;
+
+      border:0;
+      border-radius:15px;
+
+      background:transparent;
+
+      color:var(--muted);
+
+      font-size:9px;
+      font-weight:700;
+    }
+
+
+    .tabBtn.active{
+      background:#FFF5F5;
+      color:var(--rose);
+    }
+
+
+    .tabIcon{
+      display:block;
+
+      margin-bottom:3px;
+
+      font-size:15px;
+    }
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+
+    .calModal{
+      position:fixed;
+      inset:0;
+
+      z-index:9999;
+
+      display:none;
+
+      align-items:center;
+      justify-content:center;
+
+      padding:20px;
+
+      background:rgba(48,43,44,.4);
+    }
+
+
+    .calModal.open{
+      display:flex;
+    }
+
+
+    .calModalPanel{
+      width:min(92vw,450px);
+
+      max-height:78vh;
+
+      overflow:auto;
+
+      padding:20px 17px;
+
+      border-radius:22px;
+
+      background:#fff;
+    }
+
+
+    .calModalTitle{
+      font-size:20px;
+      font-weight:850;
+    }
+
+
+    .calDetail{
+      padding:12px;
+
+      margin-top:10px;
+
+      border-radius:14px;
+
+      background:#FAF6F3;
+    }
+
+
+    .calDetail strong{
+      display:block;
+
+      font-size:12px;
+    }
+
+
+    .calDetail div{
+      margin-top:5px;
+
+      color:var(--muted);
+
+      font-size:9px;
+      line-height:1.5;
+    }
+
+
+    .modalClose{
+      width:100%;
+
+      margin-top:14px;
+
+      padding:11px;
+
+      border:0;
+      border-radius:13px;
+
+      background:var(--rose);
+
+      color:#fff;
+
+      font-weight:800;
+    }
+
+
+    .error{
+      display:none;
+
+      margin-bottom:10px;
+
+      padding:11px;
+
+      border-radius:14px;
+
+      background:#FFF0F0;
+
+      color:#945456;
+
+      font-size:10px;
+    }
+
+
+    @media(min-width:850px){
+
+      .kpis{
+        grid-template-columns:repeat(4,1fr);
+      }
+
+
+      .desktopGrid{
+        display:grid;
+
+        grid-template-columns:1fr 1fr;
+
+        gap:10px;
+      }
+
+
+      .categoryGrid{
+        grid-template-columns:repeat(4,1fr);
+      }
+
+
+      .statusFilters{
+        grid-template-columns:repeat(4,1fr);
+      }
+
+
+      .monthCards{
+        display:grid;
+
+        grid-template-columns:repeat(2,1fr);
+      }
+
+    }
+
   </style>
+
 </head>
+
+
 <body>
-  <div class="box">
-    <div class="title">결혼준비 비용 대시보드</div>
-    <div class="sub">잠시 후 모바일 페이지로 이동합니다.</div>
+
+
+<div class="app">
+
+
+  <div
+    class="error"
+    id="error">
   </div>
+
+
+  <!-- =========================
+       HOME
+  ========================== -->
+
+
+  <section
+    class="tabPage active"
+    data-page="home"
+  >
+
+
+    <div class="hero">
+
+      <div class="eyebrow">
+        OUR WEDDING
+      </div>
+
+
+      <div
+        class="names"
+        id="names"
+      >
+        조재혁 ♥ 백다혜
+      </div>
+
+
+      <div
+        class="venue"
+        id="venue"
+      >
+        엘리에나호텔
+      </div>
+
+
+      <div class="heroBottom">
+
+        <div>
+
+          <div
+            class="date"
+            id="weddingDate"
+          >
+            2026.12.06
+          </div>
+
+          <div
+            class="sync"
+            id="sync"
+          >
+            Google Sheets 연결 중…
+          </div>
+
+        </div>
+
+
+        <div
+          class="dday"
+          id="dday"
+        >
+          D—
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="kpis">
+
+
+      <div class="kpi">
+
+        <div class="kpiLabel">
+          TOTAL COST
+        </div>
+
+        <div
+          class="kpiValue"
+          id="totalCost"
+        >
+          —
+        </div>
+
+        <div class="kpiSub">
+          지급액 + 남은 잔금
+        </div>
+
+      </div>
+
+
+      <div class="kpi">
+
+        <div class="kpiLabel">
+          PAID
+        </div>
+
+        <div
+          class="kpiValue"
+          id="paidAmount"
+        >
+          —
+        </div>
+
+        <div class="kpiSub">
+          현재까지 지급액
+        </div>
+
+      </div>
+
+
+      <div class="kpi">
+
+        <div class="kpiLabel">
+          BALANCE
+        </div>
+
+        <div
+          class="kpiValue"
+          id="balanceAmount"
+        >
+          —
+        </div>
+
+        <div class="kpiSub">
+          앞으로 지급할 잔금
+        </div>
+
+      </div>
+
+
+      <div class="kpi">
+
+        <div class="kpiLabel">
+          PREPARATION
+        </div>
+
+        <div
+          class="kpiValue"
+          id="preparation"
+        >
+          —
+        </div>
+
+        <div class="kpiSub">
+          전체 준비율
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="section desktopGrid">
+
+
+      <div class="card">
+
+        <div class="cardTitle">
+
+          지금 챙겨야 할 것
+
+          <span>
+            SMART PLANNER
+          </span>
+
+        </div>
+
+        <div id="priorityList"></div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="cardTitle">
+
+          비용 요약
+
+          <span>
+            SUMMARY
+          </span>
+
+        </div>
+
+
+        <div class="summaryGrid">
+
+
+          <div class="summaryBox">
+
+            <div class="summaryLabel">
+              총비용
+            </div>
+
+            <div
+              class="summaryValue"
+              id="homeTotal"
+            >
+              —
+            </div>
+
+          </div>
+
+
+          <div class="summaryBox">
+
+            <div class="summaryLabel">
+              지급액
+            </div>
+
+            <div
+              class="summaryValue"
+              id="homePaid"
+            >
+              —
+            </div>
+
+          </div>
+
+
+          <div class="summaryBox">
+
+            <div class="summaryLabel">
+              잔금
+            </div>
+
+            <div
+              class="summaryValue"
+              id="homeBalance"
+            >
+              —
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <div
+          class="caption"
+          id="homeBudgetCaption"
+        >
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+
+  <!-- =========================
+       BUDGET
+  ========================== -->
+
+
+  <section
+    class="tabPage"
+    data-page="budget"
+  >
+
+
+    <div class="sectionHead">
+
+      <div class="sectionTitle">
+        예산 / 비용
+      </div>
+
+      <div class="sectionSub">
+        BUDGET
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+
+      <div class="budgetHero">
+
+
+        <div class="budgetHeroTop">
+
+          <div>
+
+            <div class="budgetHeroLabel">
+              현재 총비용
+            </div>
+
+            <div
+              class="budgetHeroValue"
+              id="budgetTotalCost"
+            >
+              —
+            </div>
+
+          </div>
+
+
+          <div
+            class="budgetRemaining"
+            id="budgetRemaining"
+          >
+            —
+          </div>
+
+        </div>
+
+
+        <div class="progress">
+
+          <div
+            class="progressBar"
+            id="budgetBar"
+          >
+          </div>
+
+        </div>
+
+
+        <div
+          class="caption"
+          id="budgetCaption"
+        >
+        </div>
+
+
+      </div>
+
+
+      <div class="summaryGrid">
+
+
+        <div class="summaryBox">
+
+          <div class="summaryLabel">
+            목표예산
+          </div>
+
+          <div
+            class="summaryValue"
+            id="targetBudget"
+          >
+            —
+          </div>
+
+        </div>
+
+
+        <div class="summaryBox">
+
+          <div class="summaryLabel">
+            지급액
+          </div>
+
+          <div
+            class="summaryValue"
+            id="budgetPaid"
+          >
+            —
+          </div>
+
+        </div>
+
+
+        <div class="summaryBox">
+
+          <div class="summaryLabel">
+            잔금
+          </div>
+
+          <div
+            class="summaryValue"
+            id="budgetBalance"
+          >
+            —
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+    <div class="card section">
+
+
+      <div class="cardTitle">
+
+        카테고리별 비용
+
+        <span>
+          CATEGORY
+        </span>
+
+      </div>
+
+
+      <div
+        class="categoryGrid"
+        id="categoryGrid"
+      >
+      </div>
+
+
+      <div class="statusFilters">
+
+        <button
+          class="filterBtn active"
+          data-status-filter="all"
+        >
+          전체
+        </button>
+
+        <button
+          class="filterBtn"
+          data-status-filter="balance"
+        >
+          잔금 있음
+        </button>
+
+        <button
+          class="filterBtn"
+          data-status-filter="paid"
+        >
+          완납
+        </button>
+
+        <button
+          class="filterBtn"
+          data-status-filter="unknown"
+        >
+          미확정
+        </button>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="card section">
+
+
+      <div class="cardTitle">
+
+        항목별 비용
+
+        <span id="costListTitle">
+          ALL
+        </span>
+
+      </div>
+
+
+      <div class="filterResult">
+
+        <span id="filterDescription">
+          전체 항목
+        </span>
+
+        <span id="filterCount">
+          0건
+        </span>
+
+      </div>
+
+
+      <div id="costList"></div>
+
+
+    </div>
+
+
+  </section>
+
+
+  <!-- =========================
+       SCHEDULE
+  ========================== -->
+
+
+  <section
+    class="tabPage"
+    data-page="schedule"
+  >
+
+
+    <div class="sectionHead">
+
+      <div class="sectionTitle">
+        일정 / 캘린더
+      </div>
+
+      <div class="sectionSub">
+        SCHEDULE
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+
+      <div class="calendarHead">
+
+        <button
+          class="calBtn"
+          id="calPrev"
+        >
+          ‹ 이전
+        </button>
+
+
+        <div
+          class="calendarMonth"
+          id="calendarMonth"
+        >
+          —
+        </div>
+
+
+        <button
+          class="calBtn"
+          id="calNext"
+        >
+          다음 ›
+        </button>
+
+      </div>
+
+
+      <div class="calendarSwipeHint">
+        달력을 좌우로 밀어 이전·다음 달을 볼 수 있어요
+      </div>
+
+
+      <div
+        class="calendarGrid"
+        id="calendarDow"
+      >
+      </div>
+
+
+      <div
+        class="calendarGrid"
+        id="calendarGrid"
+      >
+      </div>
+
+
+    </div>
+
+
+    <div class="card section">
+
+      <div class="cardTitle">
+
+        다가오는 일정
+
+        <span>
+          UPCOMING
+        </span>
+
+      </div>
+
+      <div id="scheduleList"></div>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- =========================
+       PREPARE
+  ========================== -->
+
+
+  <section
+    class="tabPage"
+    data-page="prepare"
+  >
+
+
+    <div class="sectionHead">
+
+      <div class="sectionTitle">
+        준비 체크리스트
+      </div>
+
+      <div class="sectionSub">
+        CHECKLIST
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+
+      <div class="cardTitle">
+
+        전체 준비율
+
+        <span>
+          PROGRESS
+        </span>
+
+      </div>
+
+
+      <div
+        class="bigPercent"
+        id="prepBig"
+      >
+        0%
+      </div>
+
+
+      <div class="progress">
+
+        <div
+          class="progressBar"
+          id="prepBar"
+        >
+        </div>
+
+      </div>
+
+
+      <div
+        class="caption"
+        id="prepCaption"
+      >
+        체크리스트 계산 중…
+      </div>
+
+
+    </div>
+
+
+    <div
+      class="sectionHead"
+      style="margin-top:18px"
+    >
+
+      <div class="sectionTitle">
+        월별 준비 일정
+      </div>
+
+      <div class="sectionSub">
+        SEP — DEC
+      </div>
+
+    </div>
+
+
+    <div
+      class="monthCards"
+      id="monthCards"
+    >
+    </div>
+
+
+  </section>
+
+
+  <!-- =========================
+       MORE
+  ========================== -->
+
+
+  <section
+    class="tabPage"
+    data-page="more"
+  >
+
+
+    <div class="sectionHead">
+
+      <div class="sectionTitle">
+        기타 정보
+      </div>
+
+      <div class="sectionSub">
+        MORE
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="cardTitle">
+
+        업체 진행 현황
+
+        <span>
+          VENDORS
+        </span>
+
+      </div>
+
+      <div id="vendorList"></div>
+
+    </div>
+
+
+    <div class="card section">
+
+      <div class="cardTitle">
+
+        하객 현황
+
+        <span>
+          GUESTS
+        </span>
+
+      </div>
+
+
+      <div class="guestGrid">
+
+
+        <div class="guestBox">
+
+          <div class="guestLabel">
+            전체
+          </div>
+
+          <div
+            class="guestValue"
+            id="guestTotal"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="guestBox">
+
+          <div class="guestLabel">
+            확정
+          </div>
+
+          <div
+            class="guestValue"
+            id="guestConfirmed"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="guestBox">
+
+          <div class="guestLabel">
+            미정
+          </div>
+
+          <div
+            class="guestValue"
+            id="guestUndecided"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="guestBox">
+
+          <div class="guestLabel">
+            불참
+          </div>
+
+          <div
+            class="guestValue"
+            id="guestDeclined"
+          >
+            0
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+    <div class="card section">
+
+      <div class="cardTitle">
+
+        신혼여행
+
+        <span>
+          HONEYMOON
+        </span>
+
+      </div>
+
+      <div id="honeymoon"></div>
+
+    </div>
+
+
+    <div class="card section">
+
+      <div class="cardTitle">
+
+        최근 메모
+
+        <span>
+          MEMO
+        </span>
+
+      </div>
+
+      <div id="notes"></div>
+
+    </div>
+
+
+  </section>
+
+
+</div>
+
+
+<!-- =========================
+     BOTTOM NAV
+========================== -->
+
+
+<nav class="bottomNav">
+
+  <div class="bottomNavInner">
+
+
+    <button
+      class="tabBtn active"
+      data-tab="home"
+    >
+
+      <span class="tabIcon">
+        ⌂
+      </span>
+
+      홈
+
+    </button>
+
+
+    <button
+      class="tabBtn"
+      data-tab="budget"
+    >
+
+      <span class="tabIcon">
+        ₩
+      </span>
+
+      예산
+
+    </button>
+
+
+    <button
+      class="tabBtn"
+      data-tab="schedule"
+    >
+
+      <span class="tabIcon">
+        ◫
+      </span>
+
+      일정
+
+    </button>
+
+
+    <button
+      class="tabBtn"
+      data-tab="prepare"
+    >
+
+      <span class="tabIcon">
+        ✓
+      </span>
+
+      준비
+
+    </button>
+
+
+    <button
+      class="tabBtn"
+      data-tab="more"
+    >
+
+      <span class="tabIcon">
+        •••
+      </span>
+
+      기타
+
+    </button>
+
+
+  </div>
+
+</nav>
+
+
+<!-- =========================
+     CALENDAR MODAL
+========================== -->
+
+
+<div
+  class="calModal"
+  id="calModal"
+>
+
+
+  <div class="calModalPanel">
+
+
+    <div
+      class="calModalTitle"
+      id="calModalDate"
+    >
+      —
+    </div>
+
+
+    <div id="calModalBody"></div>
+
+
+    <button
+      class="modalClose"
+      id="modalClose"
+    >
+      닫기
+    </button>
+
+
+  </div>
+
+
+</div>
+
+
+<script>
+
+
+const $ =
+  id =>
+    document.getElementById(id);
+
+
+let expenseItems = [];
+
+
+let selectedCategory =
+  '전체';
+
+
+let selectedStatusFilter =
+  'all';
+
+
+/* =========================
+   COMMON
+========================= */
+
+
+function clean(v){
+
+  return String(
+    v ?? ''
+  ).trim();
+
+}
+
+
+function num(v){
+
+  const text =
+    clean(v)
+      .replace(/,/g,'')
+      .replace(/[^\d.-]/g,'');
+
+
+  if(!text){
+    return 0;
+  }
+
+
+  const n =
+    Number(text);
+
+
+  return Number.isFinite(n)
+    ? n
+    : 0;
+
+}
+
+
+function won(v){
+
+  return new Intl.NumberFormat(
+    'ko-KR'
+  ).format(
+    Number(v) || 0
+  ) + '원';
+
+}
+
+
+function validRows(data){
+
+  if(!Array.isArray(data)){
+    return [];
+  }
+
+
+  return data.filter(
+    row =>
+      Array.isArray(row) &&
+      row.some(
+        cell =>
+          clean(cell)
+      )
+  );
+
+}
+
+
+function getSetting(
+  data,
+  key
+){
+
+  for(const row of validRows(data)){
+
+    for(
+      let i=0;
+      i<row.length;
+      i++
+    ){
+
+      if(
+        clean(row[i]) === key
+      ){
+
+        return clean(
+          row[i+1]
+        );
+
+      }
+
+    }
+
+  }
+
+
+  return '';
+
+}
+
+
+function parseDate(value){
+
+  const text =
+    clean(value)
+      .replace(/\./g,'-')
+      .replace(/\//g,'-');
+
+
+  const match =
+    text.match(
+      /(\d{4})-(\d{1,2})-(\d{1,2})/
+    );
+
+
+  if(!match){
+    return null;
+  }
+
+
+  return new Date(
+    Number(match[1]),
+    Number(match[2]) - 1,
+    Number(match[3])
+  );
+
+}
+
+
+function formatDate(date){
+
+  if(!date){
+    return '—';
+  }
+
+
+  return [
+
+    date.getFullYear(),
+
+    String(
+      date.getMonth()+1
+    ).padStart(
+      2,
+      '0'
+    ),
+
+    String(
+      date.getDate()
+    ).padStart(
+      2,
+      '0'
+    )
+
+  ].join('.');
+
+}
+
+
+function escapeHtml(v){
+
+  return clean(v)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+
+}
+
+
+/*
+  중요:
+  미확정 안에 "확정"이라는 글자가 포함되기 때문에
+  미확정/미정 등을 먼저 판단해야 함.
+*/
+function badge(status){
+
+  const value =
+    clean(status);
+
+
+  let cls =
+    '';
+
+
+  if(
+    value.includes('미확정') ||
+    value.includes('미정') ||
+    value.includes('미시작')
+  ){
+
+    cls =
+      'gray';
+
+  }
+  else if(
+    value.includes('완료') ||
+    value.includes('완납') ||
+    value.includes('결제완료') ||
+    value.includes('확정')
+  ){
+
+    cls =
+      'green';
+
+  }
+
+
+  return `
+    <span class="badge ${cls}">
+      ${
+        escapeHtml(
+          value ||
+          '확인필요'
+        )
+      }
+    </span>
+  `;
+
+}
+
+
+function listRow(
+  title,
+  subtitle,
+  badgeHtml,
+  sage=false
+){
+
+  return `
+    <div class="listRow">
+
+      <span
+        class="dot ${
+          sage
+            ? 'sage'
+            : ''
+        }"
+      >
+      </span>
+
+      <div class="listMain">
+
+        <div class="listTitle">
+          ${
+            escapeHtml(
+              title ||
+              '—'
+            )
+          }
+        </div>
+
+        <div class="listSub">
+          ${
+            escapeHtml(
+              subtitle ||
+              ''
+            )
+          }
+        </div>
+
+      </div>
+
+      ${
+        badgeHtml ||
+        ''
+      }
+
+    </div>
+  `;
+
+}
+
+
+/* =========================
+   HEADER FINDER
+========================= */
+
+
+function findHeaderIndex(
+  data,
+  required
+){
+
+  if(!Array.isArray(data)){
+    return -1;
+  }
+
+
+  let best =
+    -1;
+
+
+  let bestScore =
+    -1;
+
+
+  data
+    .slice(
+      0,
+      15
+    )
+    .forEach(
+      (
+        row,
+        index
+      ) => {
+
+        const headers =
+          (
+            row ||
+            []
+          )
+          .map(
+            x =>
+              clean(x)
+                .replace(
+                  /\s+/g,
+                  ''
+                )
+          );
+
+
+        let score =
+          0;
+
+
+        required.forEach(
+          name => {
+
+            if(
+              headers.includes(
+                name.replace(
+                  /\s+/g,
+                  ''
+                )
+              )
+            ){
+
+              score++;
+
+            }
+
+          }
+        );
+
+
+        if(
+          score >
+          bestScore
+        ){
+
+          bestScore =
+            score;
+
+          best =
+            index;
+
+        }
+
+      }
+    );
+
+
+  return best;
+
+}
+
+
+function exactColumn(
+  headers,
+  candidates
+){
+
+  const normalized =
+    headers.map(
+      h =>
+        clean(h)
+          .replace(
+            /\s+/g,
+            ''
+          )
+    );
+
+
+  for(
+    const candidate
+    of candidates
+  ){
+
+    const idx =
+      normalized.indexOf(
+        candidate.replace(
+          /\s+/g,
+          ''
+        )
+      );
+
+
+    if(idx >= 0){
+      return idx;
+    }
+
+  }
+
+
+  return -1;
+
+}
+
+
+function flexibleColumn(
+  headers,
+  candidates
+){
+
+  const exact =
+    exactColumn(
+      headers,
+      candidates
+    );
+
+
+  if(exact >= 0){
+    return exact;
+  }
+
+
+  const normalized =
+    headers.map(
+      h =>
+        clean(h)
+          .replace(
+            /\s+/g,
+            ''
+          )
+    );
+
+
+  for(
+    const candidate
+    of candidates
+  ){
+
+    const target =
+      candidate.replace(
+        /\s+/g,
+        ''
+      );
+
+
+    const idx =
+      normalized.findIndex(
+        h =>
+          h.includes(
+            target
+          )
+      );
+
+
+    if(idx >= 0){
+      return idx;
+    }
+
+  }
+
+
+  return -1;
+
+}
+
+
+/* =========================
+   EXPENSE
+========================= */
+
+
+function renderExpenses(
+  data,
+  targetBudget
+){
+
+  const headerIndex =
+    findHeaderIndex(
+      data,
+      [
+        '카테고리',
+        '세부항목',
+        '총비용',
+        '지급액',
+        '잔금'
+      ]
+    );
+
+
+  if(headerIndex < 0){
+
+    $('costList')
+      .innerHTML =
+      '<div class="empty">비용 데이터를 찾지 못했습니다.</div>';
+
+    return;
+
+  }
+
+
+  const headers =
+    data[
+      headerIndex
+    ] || [];
+
+
+  const cCategory =
+    exactColumn(
+      headers,
+      ['카테고리']
+    );
+
+
+  const cItem =
+    exactColumn(
+      headers,
+      ['세부항목']
+    );
+
+
+  const cVendor =
+    exactColumn(
+      headers,
+      ['업체/내용']
+    );
+
+
+  const cTotal =
+    exactColumn(
+      headers,
+      ['총비용']
+    );
+
+
+  const cDeposit =
+    exactColumn(
+      headers,
+      ['계약금']
+    );
+
+
+  const cExtra =
+    exactColumn(
+      headers,
+      ['추가지급']
+    );
+
+
+  const cPaid =
+    exactColumn(
+      headers,
+      ['지급액']
+    );
+
+
+  const cBalance =
+    exactColumn(
+      headers,
+      ['잔금']
+    );
+
+
+  const cStatus =
+    exactColumn(
+      headers,
+      ['결제상태']
+    );
+
+
+  const cMemo =
+    exactColumn(
+      headers,
+      ['비고']
+    );
+
+
+  expenseItems =
+    [];
+
+
+  let paidSum =
+    0;
+
+
+  let balanceSum =
+    0;
+
+
+  data
+    .slice(
+      headerIndex + 1
+    )
+    .forEach(
+      row => {
+
+
+        if(
+          !Array.isArray(row) ||
+          !row.some(
+            cell =>
+              clean(cell)
+          )
+        ){
+          return;
+        }
+
+
+        const category =
+          cCategory >= 0
+            ? clean(
+                row[cCategory]
+              )
+            : '기타';
+
+
+        const item =
+          cItem >= 0
+            ? clean(
+                row[cItem]
+              )
+            : '';
+
+
+        const vendor =
+          cVendor >= 0
+            ? clean(
+                row[cVendor]
+              )
+            : '';
+
+
+        const status =
+          cStatus >= 0
+            ? clean(
+                row[cStatus]
+              )
+            : '';
+
+
+        const memo =
+          cMemo >= 0
+            ? clean(
+                row[cMemo]
+              )
+            : '';
+
+
+        let paid =
+          0;
+
+
+        if(
+          cPaid >= 0 &&
+          clean(
+            row[cPaid]
+          ) !== ''
+        ){
+
+          paid =
+            num(
+              row[cPaid]
+            );
+
+        }
+        else{
+
+          paid =
+            (
+              cDeposit >= 0
+                ? num(
+                    row[cDeposit]
+                  )
+                : 0
+            )
+            +
+            (
+              cExtra >= 0
+                ? num(
+                    row[cExtra]
+                  )
+                : 0
+            );
+
+        }
+
+
+        let balance =
+          0;
+
+
+        if(
+          cBalance >= 0 &&
+          clean(
+            row[cBalance]
+          ) !== ''
+        ){
+
+          balance =
+            num(
+              row[cBalance]
+            );
+
+        }
+        else if(
+          cTotal >= 0 &&
+          clean(
+            row[cTotal]
+          ) !== ''
+        ){
+
+          balance =
+            Math.max(
+              0,
+              num(
+                row[cTotal]
+              ) -
+              paid
+            );
+
+        }
+
+
+        const total =
+          paid +
+          balance;
+
+
+        const isUnknown =
+          total === 0 &&
+          (
+            status.includes('미확정') ||
+            status.includes('미정')
+          );
+
+
+        if(
+          !vendor &&
+          !item &&
+          !total &&
+          !isUnknown
+        ){
+          return;
+        }
+
+
+        const paymentState =
+          isUnknown
+            ? 'unknown'
+            : balance > 0
+              ? 'balance'
+              : total > 0
+                ? 'paid'
+                : 'unknown';
+
+
+        expenseItems.push({
+
+          category:
+            category ||
+            '기타',
+
+          item,
+
+          vendor,
+
+          status,
+
+          memo,
+
+          paid,
+
+          balance,
+
+          total,
+
+          paymentState
+
+        });
+
+
+        paidSum +=
+          paid;
+
+
+        balanceSum +=
+          balance;
+
+      }
+    );
+
+
+  const totalCost =
+    paidSum +
+    balanceSum;
+
+
+  const remainingBudget =
+    targetBudget -
+    totalCost;
+
+
+  const budgetRate =
+    targetBudget > 0
+      ? Math.min(
+          100,
+          totalCost /
+          targetBudget *
+          100
+        )
+      : 0;
+
+
+  $('totalCost')
+    .textContent =
+    won(totalCost);
+
+
+  $('paidAmount')
+    .textContent =
+    won(paidSum);
+
+
+  $('balanceAmount')
+    .textContent =
+    won(balanceSum);
+
+
+  $('homeTotal')
+    .textContent =
+    won(totalCost);
+
+
+  $('homePaid')
+    .textContent =
+    won(paidSum);
+
+
+  $('homeBalance')
+    .textContent =
+    won(balanceSum);
+
+
+  $('homeBudgetCaption')
+    .textContent =
+    remainingBudget >= 0
+      ? `목표예산 ${won(targetBudget)} 대비 ${won(remainingBudget)} 여유`
+      : `목표예산 ${won(targetBudget)} 대비 ${won(Math.abs(remainingBudget))} 초과`;
+
+
+  $('budgetTotalCost')
+    .textContent =
+    won(totalCost);
+
+
+  $('targetBudget')
+    .textContent =
+    won(targetBudget);
+
+
+  $('budgetPaid')
+    .textContent =
+    won(paidSum);
+
+
+  $('budgetBalance')
+    .textContent =
+    won(balanceSum);
+
+
+  $('budgetRemaining')
+    .textContent =
+    remainingBudget >= 0
+      ? `여유 ${won(remainingBudget)}`
+      : `초과 ${won(Math.abs(remainingBudget))}`;
+
+
+  $('budgetBar')
+    .style
+    .width =
+    budgetRate +
+    '%';
+
+
+  $('budgetCaption')
+    .textContent =
+    `현재 총비용은 목표예산의 ${budgetRate.toFixed(1)}%입니다.`;
+
+
+  renderCategoryCards();
+
+  renderFilteredExpenses();
+
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+
+function renderCategoryCards(){
+
+  const categoryMap =
+    {};
+
+
+  expenseItems.forEach(
+    item => {
+
+
+      if(
+        !categoryMap[
+          item.category
+        ]
+      ){
+
+        categoryMap[
+          item.category
+        ] = {
+
+          total:0,
+          paid:0,
+          balance:0,
+          count:0
+
+        };
+
+      }
+
+
+      categoryMap[
+        item.category
+      ].total +=
+        item.total;
+
+
+      categoryMap[
+        item.category
+      ].paid +=
+        item.paid;
+
+
+      categoryMap[
+        item.category
+      ].balance +=
+        item.balance;
+
+
+      categoryMap[
+        item.category
+      ].count++;
+
+    }
+  );
+
+
+  const allSummary = {
+
+    total:
+      expenseItems.reduce(
+        (s,x) =>
+          s + x.total,
+        0
+      ),
+
+    paid:
+      expenseItems.reduce(
+        (s,x) =>
+          s + x.paid,
+        0
+      ),
+
+    balance:
+      expenseItems.reduce(
+        (s,x) =>
+          s + x.balance,
+        0
+      ),
+
+    count:
+      expenseItems.length
+
+  };
+
+
+  const preferredOrder = [
+
+    '예식 / 본식',
+    '스드메 / 촬영',
+    '예복 / 한복',
+    '예물 / 선물',
+    '혼주 / 가족행사',
+    '신혼여행',
+    '청첩장 / 모임',
+    '뷰티 / 관리'
+
+  ];
+
+
+  const extraCategories =
+    Object
+      .keys(
+        categoryMap
+      )
+      .filter(
+        category =>
+          !preferredOrder.includes(
+            category
+          )
+      );
+
+
+  const order = [
+    '전체',
+    ...preferredOrder,
+    ...extraCategories
+  ];
+
+
+  $('categoryGrid')
+    .innerHTML =
+    order
+      .map(
+        category => {
+
+
+          const summary =
+            category ===
+            '전체'
+              ? allSummary
+              : categoryMap[
+                  category
+                ];
+
+
+          if(!summary){
+            return '';
+          }
+
+
+          return `
+            <button
+              class="categoryCard ${
+                selectedCategory === category
+                  ? 'active'
+                  : ''
+              }"
+              data-category="${
+                escapeHtml(
+                  category
+                )
+              }"
+            >
+
+              <div class="categoryName">
+                ${
+                  escapeHtml(
+                    category
+                  )
+                }
+              </div>
+
+              <div class="categoryTotal">
+                ${
+                  won(
+                    summary.total
+                  )
+                }
+              </div>
+
+              <div class="categoryMeta">
+                지급 ${
+                  won(
+                    summary.paid
+                  )
+                }<br>
+                잔금 ${
+                  won(
+                    summary.balance
+                  )
+                }
+              </div>
+
+              <div class="categoryCount">
+                ${
+                  summary.count
+                }개 항목
+              </div>
+
+            </button>
+          `;
+
+        }
+      )
+      .join('');
+
+
+  document
+    .querySelectorAll(
+      '.categoryCard'
+    )
+    .forEach(
+      card => {
+
+        card.onclick =
+          () => {
+
+            selectedCategory =
+              card
+                .dataset
+                .category;
+
+
+            renderCategoryCards();
+
+            renderFilteredExpenses();
+
+          };
+
+      }
+    );
+
+}
+
+
+/* =========================
+   COST FILTER
+========================= */
+
+
+function renderFilteredExpenses(){
+
+  let filtered =
+    expenseItems
+      .slice();
+
+
+  if(
+    selectedCategory !==
+    '전체'
+  ){
+
+    filtered =
+      filtered.filter(
+        item =>
+          item.category ===
+          selectedCategory
+      );
+
+  }
+
+
+  if(
+    selectedStatusFilter !==
+    'all'
+  ){
+
+    filtered =
+      filtered.filter(
+        item =>
+          item.paymentState ===
+          selectedStatusFilter
+      );
+
+  }
+
+
+  filtered.sort(
+    (
+      a,
+      b
+    ) =>
+      b.total -
+      a.total
+  );
+
+
+  $('costListTitle')
+    .textContent =
+    selectedCategory ===
+    '전체'
+      ? 'ALL'
+      : selectedCategory;
+
+
+  const statusText = {
+
+    all:'전체',
+    balance:'잔금 있음',
+    paid:'완납',
+    unknown:'미확정'
+
+  };
+
+
+  $('filterDescription')
+    .textContent =
+    `${selectedCategory} · ${
+      statusText[
+        selectedStatusFilter
+      ]
+    }`;
+
+
+  $('filterCount')
+    .textContent =
+    `${filtered.length}건`;
+
+
+  if(!filtered.length){
+
+    $('costList')
+      .innerHTML =
+      '<div class="empty">조건에 해당하는 비용 항목이 없습니다.</div>';
+
+    return;
+
+  }
+
+
+  $('costList')
+    .innerHTML =
+    filtered
+      .map(
+        entry => {
+
+
+          const title =
+            entry.vendor ||
+            entry.item ||
+            entry.category;
+
+
+          return `
+            <div class="costItem">
+
+              <div class="costTop">
+
+                <div class="costName">
+
+                  <strong>
+                    ${
+                      escapeHtml(
+                        title
+                      )
+                    }
+                  </strong>
+
+                  <small>
+                    ${
+                      escapeHtml(
+                        [
+                          entry.category,
+                          entry.item
+                        ]
+                        .filter(Boolean)
+                        .join(' · ')
+                      )
+                    }
+                  </small>
+
+                </div>
+
+                ${
+                  badge(
+                    entry.status
+                  )
+                }
+
+              </div>
+
+
+              <div class="costGrid">
+
+                <div class="costBox">
+
+                  <span>
+                    총비용
+                  </span>
+
+                  <strong>
+                    ${
+                      entry.paymentState ===
+                      'unknown'
+                        ? '미확정'
+                        : won(
+                            entry.total
+                          )
+                    }
+                  </strong>
+
+                </div>
+
+
+                <div class="costBox">
+
+                  <span>
+                    지급액
+                  </span>
+
+                  <strong>
+                    ${
+                      won(
+                        entry.paid
+                      )
+                    }
+                  </strong>
+
+                </div>
+
+
+                <div class="costBox">
+
+                  <span>
+                    잔금
+                  </span>
+
+                  <strong>
+                    ${
+                      entry.paymentState ===
+                      'unknown'
+                        ? '미확정'
+                        : won(
+                            entry.balance
+                          )
+                    }
+                  </strong>
+
+                </div>
+
+              </div>
+
+            </div>
+          `;
+
+        }
+      )
+      .join('');
+
+}
+
+
+/* =========================
+   STATUS FILTER
+========================= */
+
+
+document
+  .querySelectorAll(
+    '[data-status-filter]'
+  )
+  .forEach(
+    button => {
+
+      button.onclick =
+        () => {
+
+          selectedStatusFilter =
+            button
+              .dataset
+              .statusFilter;
+
+
+          document
+            .querySelectorAll(
+              '[data-status-filter]'
+            )
+            .forEach(
+              btn =>
+                btn
+                  .classList
+                  .remove(
+                    'active'
+                  )
+            );
+
+
+          button
+            .classList
+            .add(
+              'active'
+            );
+
+
+          renderFilteredExpenses();
+
+        };
+
+    }
+  );
+
+
+/* =========================
+   TABLE ANALYSIS
+========================= */
+
+
+function analyzeTable(
+  data,
+  keywords
+){
+
+  const rows =
+    validRows(
+      data
+    );
+
+
+  let bestIndex =
+    -1;
+
+
+  let bestScore =
+    -1;
+
+
+  rows
+    .slice(
+      0,
+      12
+    )
+    .forEach(
+      (
+        row,
+        index
+      ) => {
+
+
+        let score =
+          0;
+
+
+        keywords.forEach(
+          keyword => {
+
+            if(
+              row.some(
+                cell =>
+                  clean(
+                    cell
+                  )
+                  .includes(
+                    keyword
+                  )
+              )
+            ){
+
+              score++;
+
+            }
+
+          }
+        );
+
+
+        if(
+          score >
+          bestScore
+        ){
+
+          bestScore =
+            score;
+
+          bestIndex =
+            index;
+
+        }
+
+      }
+    );
+
+
+  return {
+
+    rows,
+
+    headerIndex:
+      bestIndex,
+
+    headers:
+      bestIndex >= 0
+        ? rows[
+            bestIndex
+          ]
+        : []
+
+  };
+
+}
+
+
+/* =========================
+   MONTHLY PREP
+========================= */
+
+
+function renderMonthlyPrepCards(
+  tasks,
+  columns,
+  today
+){
+
+  const {
+    task,
+    status,
+    target,
+    stage,
+    importance
+  } =
+    columns;
+
+
+  const monthNames = {
+
+    9:'SEPTEMBER',
+    10:'OCTOBER',
+    11:'NOVEMBER',
+    12:'DECEMBER'
+
+  };
+
+
+  const groups = {
+
+    9:[],
+    10:[],
+    11:[],
+    12:[]
+
+  };
+
+
+  tasks.forEach(
+    row => {
+
+
+      if(target < 0){
+        return;
+      }
+
+
+      const d =
+        parseDate(
+          row[target]
+        );
+
+
+      if(
+        !d ||
+        d.getFullYear() !==
+        2026
+      ){
+        return;
+      }
+
+
+      const month =
+        d.getMonth() +
+        1;
+
+
+      if(
+        groups[month]
+      ){
+
+        groups[
+          month
+        ].push({
+
+          row,
+          date:d
+
+        });
+
+      }
+
+    }
+  );
+
+
+  Object
+    .keys(
+      groups
+    )
+    .forEach(
+      month => {
+
+        groups[
+          month
+        ].sort(
+          (
+            a,
+            b
+          ) =>
+            a.date -
+            b.date
+        );
+
+      }
+    );
+
+
+  $('monthCards')
+    .innerHTML =
+    [
+      9,
+      10,
+      11,
+      12
+    ]
+    .map(
+      month => {
+
+
+        const items =
+          groups[
+            month
+          ];
+
+
+        const doneCount =
+          items.filter(
+            item => {
+
+
+              const s =
+                status >= 0
+                  ? clean(
+                      item
+                        .row[
+                          status
+                        ]
+                    )
+                  : '';
+
+
+              return s.includes(
+                '완료'
+              );
+
+            }
+          ).length;
+
+
+        const progressCount =
+          items.filter(
+            item => {
+
+
+              const s =
+                status >= 0
+                  ? clean(
+                      item
+                        .row[
+                          status
+                        ]
+                    )
+                  : '';
+
+
+              return (
+                s.includes(
+                  '진행'
+                ) ||
+                s.includes(
+                  '준비중'
+                )
+              );
+
+            }
+          ).length;
+
+
+        const upcomingCount =
+          Math.max(
+            0,
+            items.length -
+            doneCount -
+            progressCount
+          );
+
+
+        const isCurrentMonth =
+          today.getFullYear() ===
+            2026
+          &&
+          today.getMonth()+1 ===
+            month;
+
+
+        const openByDefault =
+          isCurrentMonth;
+
+
+        return `
+          <div
+            class="monthCard ${
+              isCurrentMonth
+                ? 'current'
+                : ''
+            } ${
+              openByDefault
+                ? 'open'
+                : ''
+            }"
+          >
+
+            <button
+              type="button"
+              class="monthHeader"
+            >
+
+              <div class="monthTitleArea">
+
+                <div class="monthTopLine">
+
+                  <div class="monthName">
+                    ${month}월 · ${
+                      monthNames[
+                        month
+                      ]
+                    }
+                  </div>
+
+                  ${
+                    isCurrentMonth
+                      ? `
+                        <span class="currentMonthBadge">
+                          이번 달
+                        </span>
+                      `
+                      : ''
+                  }
+
+                </div>
+
+
+                <div class="monthSummary">
+
+                  ${
+                    items.length
+                  }개 항목
+
+                  · 완료 ${
+                    doneCount
+                  }
+
+                  · 진행 ${
+                    progressCount
+                  }
+
+                  · 예정 ${
+                    upcomingCount
+                  }
+
+                </div>
+
+              </div>
+
+
+              <div class="monthArrow">
+                ▼
+              </div>
+
+            </button>
+
+
+            <div class="monthBody">
+
+              ${
+                items.length
+                  ? items
+                      .map(
+                        item => {
+
+
+                          const row =
+                            item.row;
+
+
+                          const s =
+                            status >= 0
+                              ? clean(
+                                  row[
+                                    status
+                                  ]
+                                )
+                              : '';
+
+
+                          const isDone =
+                            s.includes(
+                              '완료'
+                            );
+
+
+                          const stageText =
+                            stage >= 0
+                              ? clean(
+                                  row[
+                                    stage
+                                  ]
+                                )
+                              : '';
+
+
+                          const importanceText =
+                            importance >= 0
+                              ? clean(
+                                  row[
+                                    importance
+                                  ]
+                                )
+                              : '';
+
+
+                          return `
+                            <div
+                              class="monthlyTask ${
+                                isDone
+                                  ? 'done'
+                                  : ''
+                              }"
+                            >
+
+                              <div class="taskDate">
+
+                                ${
+                                  String(
+                                    month
+                                  )
+                                  .padStart(
+                                    2,
+                                    '0'
+                                  )
+                                }/${
+                                  String(
+                                    item
+                                      .date
+                                      .getDate()
+                                  )
+                                  .padStart(
+                                    2,
+                                    '0'
+                                  )
+                                }
+
+                              </div>
+
+
+                              <div class="monthlyTaskMain">
+
+                                <div class="monthlyTaskTitle">
+
+                                  ${
+                                    escapeHtml(
+                                      row[
+                                        task
+                                      ]
+                                    )
+                                  }
+
+                                </div>
+
+
+                                <div class="monthlyTaskMeta">
+
+                                  ${
+                                    [
+                                      stageText,
+                                      importanceText,
+                                      s
+                                    ]
+                                    .filter(Boolean)
+                                    .map(
+                                      escapeHtml
+                                    )
+                                    .join(
+                                      ' · '
+                                    )
+                                  }
+
+                                </div>
+
+                              </div>
+
+
+                              ${
+                                badge(
+                                  s
+                                )
+                              }
+
+                            </div>
+                          `;
+
+                        }
+                      )
+                      .join('')
+                  : `
+                    <div class="monthEmpty">
+                      등록된 준비 일정이 없습니다.
+                    </div>
+                  `
+              }
+
+            </div>
+
+          </div>
+        `;
+
+      }
+    )
+    .join('');
+
+
+  document
+    .querySelectorAll(
+      '.monthHeader'
+    )
+    .forEach(
+      button => {
+
+        button
+          .addEventListener(
+            'click',
+            () => {
+
+              const card =
+                button.closest(
+                  '.monthCard'
+                );
+
+
+              card
+                .classList
+                .toggle(
+                  'open'
+                );
+
+            }
+          );
+
+      }
+    );
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+
+function renderDashboard(
+  data
+){
+
+  const groom =
+    getSetting(
+      data.settings,
+      '신랑'
+    ) ||
+    '조재혁';
+
+
+  const bride =
+    getSetting(
+      data.settings,
+      '신부'
+    ) ||
+    '백다혜';
+
+
+  const venue =
+    getSetting(
+      data.settings,
+      '예식장'
+    ) ||
+    '엘리에나호텔';
+
+
+  const wedding =
+    parseDate(
+      getSetting(
+        data.settings,
+        '예식일'
+      ) ||
+      '2026-12-06'
+    );
+
+
+  const targetBudget =
+    num(
+      getSetting(
+        data.settings,
+        '총 예산'
+      )
+    );
+
+
+  $('names')
+    .textContent =
+    `${groom} ♥ ${bride}`;
+
+
+  $('venue')
+    .textContent =
+    venue;
+
+
+  $('weddingDate')
+    .textContent =
+    formatDate(
+      wedding
+    );
+
+
+  const today =
+    new Date();
+
+
+  today.setHours(
+    0,
+    0,
+    0,
+    0
+  );
+
+
+  if(wedding){
+
+    const diff =
+      Math.ceil(
+        (
+          wedding -
+          today
+        ) /
+        86400000
+      );
+
+
+    $('dday')
+      .textContent =
+      diff >= 0
+        ? `D-${diff}`
+        : `D+${Math.abs(diff)}`;
+
+  }
+
+
+  $('sync')
+    .textContent =
+    'LIVE · ' +
+    new Date(
+      data.updatedAt ||
+      Date.now()
+    )
+    .toLocaleString(
+      'ko-KR'
+    );
+
+
+  /* 비용 */
+
+  renderExpenses(
+    data.expenses,
+    targetBudget
+  );
+
+
+  /* =========================
+     CHECKLIST
+  ========================= */
+
+
+  const checklist =
+    analyzeTable(
+      data.checklist,
+      [
+        '체크항목',
+        '진행상태',
+        '목표일',
+        '단계'
+      ]
+    );
+
+
+  const cTask =
+    flexibleColumn(
+      checklist.headers,
+      [
+        '체크항목'
+      ]
+    );
+
+
+  const cStatus =
+    flexibleColumn(
+      checklist.headers,
+      [
+        '진행상태'
+      ]
+    );
+
+
+  const cTarget =
+    flexibleColumn(
+      checklist.headers,
+      [
+        '목표일'
+      ]
+    );
+
+
+  const cStage =
+    flexibleColumn(
+      checklist.headers,
+      [
+        '단계'
+      ]
+    );
+
+
+  const cImportance =
+    flexibleColumn(
+      checklist.headers,
+      [
+        '중요도'
+      ]
+    );
+
+
+  const tasks =
+    checklist
+      .rows
+      .slice(
+        checklist.headerIndex +
+        1
+      )
+      .filter(
+        row =>
+          cTask >= 0 &&
+          clean(
+            row[
+              cTask
+            ]
+          )
+      );
+
+
+  const activeTasks =
+    tasks.filter(
+      row => {
+
+
+        const s =
+          cStatus >= 0
+            ? clean(
+                row[
+                  cStatus
+                ]
+              )
+            : '';
+
+
+        return !s.includes(
+          '제외'
+        );
+
+      }
+    );
+
+
+  const completed =
+    activeTasks.filter(
+      row => {
+
+
+        const s =
+          cStatus >= 0
+            ? clean(
+                row[
+                  cStatus
+                ]
+              )
+            : '';
+
+
+        return s.includes(
+          '완료'
+        );
+
+      }
+    ).length;
+
+
+  const prep =
+    activeTasks.length
+      ? completed /
+        activeTasks.length *
+        100
+      : 0;
+
+
+  $('preparation')
+    .textContent =
+    prep.toFixed(
+      0
+    ) + '%';
+
+
+  $('prepBig')
+    .textContent =
+    prep.toFixed(
+      0
+    ) + '%';
+
+
+  $('prepBar')
+    .style
+    .width =
+    prep +
+    '%';
+
+
+  $('prepCaption')
+    .textContent =
+    `${activeTasks.length}개 중 ${completed}개 완료`;
+
+
+  renderMonthlyPrepCards(
+    activeTasks,
+    {
+
+      task:cTask,
+      status:cStatus,
+      target:cTarget,
+      stage:cStage,
+      importance:cImportance
+
+    },
+    today
+  );
+
+
+  /* =========================
+     SMART PLANNER
+  ========================= */
+
+
+  const priorities =
+    activeTasks
+      .filter(
+        row => {
+
+
+          const s =
+            cStatus >= 0
+              ? clean(
+                  row[
+                    cStatus
+                  ]
+                )
+              : '';
+
+
+          return (
+            !s.includes(
+              '완료'
+            )
+            &&
+            !s.includes(
+              '보류'
+            )
+          );
+
+        }
+      )
+      .map(
+        row => {
+
+
+          const d =
+            cTarget >= 0
+              ? parseDate(
+                  row[
+                    cTarget
+                  ]
+                )
+              : null;
+
+
+          const days =
+            d
+              ? Math.ceil(
+                  (
+                    d -
+                    today
+                  ) /
+                  86400000
+                )
+              : 9999;
+
+
+          const importance =
+            cImportance >= 0
+              ? clean(
+                  row[
+                    cImportance
+                  ]
+                )
+              : '';
+
+
+          let score =
+            0;
+
+
+          if(
+            importance.includes(
+              '중요'
+            )
+          ){
+
+            score +=
+              100;
+
+          }
+
+
+          if(d){
+
+            score +=
+              Math.max(
+                0,
+                60 -
+                Math.max(
+                  days,
+                  0
+                )
+              );
+
+          }
+
+
+          return {
+
+            row,
+            d,
+            days,
+            score,
+            importance
+
+          };
+
+        }
+      )
+      .sort(
+        (
+          a,
+          b
+        ) =>
+          b.score -
+          a.score
+          ||
+          a.days -
+          b.days
+      )
+      .slice(
+        0,
+        5
+      );
+
+
+  $('priorityList')
+    .innerHTML =
+    priorities.length
+      ? priorities
+          .map(
+            item => {
+
+
+              const due =
+                item.d
+                  ? item.days < 0
+                    ? `${Math.abs(item.days)}일 지남`
+                    : item.days === 0
+                      ? '오늘'
+                      : `D-${item.days}`
+                  : '목표일 미정';
+
+
+              return `
+                <div class="priorityBox">
+
+                  <div class="priorityTop">
+
+                    <div class="priorityTitle">
+
+                      ${
+                        escapeHtml(
+                          item.row[
+                            cTask
+                          ]
+                        )
+                      }
+
+                    </div>
+
+
+                    ${
+                      badge(
+                        item.importance
+                      )
+                    }
+
+                  </div>
+
+
+                  <div class="priorityMeta">
+
+                    ${
+                      [
+                        cStage >= 0
+                          ? item.row[
+                              cStage
+                            ]
+                          : '',
+
+                        item.d
+                          ? formatDate(
+                              item.d
+                            )
+                          : '',
+
+                        due
+                      ]
+                      .filter(Boolean)
+                      .map(
+                        escapeHtml
+                      )
+                      .join(
+                        ' · '
+                      )
+                    }
+
+                  </div>
+
+                </div>
+              `;
+
+            }
+          )
+          .join('')
+      : '<div class="empty">현재 챙길 항목이 없습니다.</div>';
+
+
+  /* =========================
+     SCHEDULE
+  ========================= */
+
+
+  const schedule =
+    analyzeTable(
+      data.schedules,
+      [
+        '날짜',
+        '일정',
+        '구분'
+      ]
+    );
+
+
+  const sDate =
+    flexibleColumn(
+      schedule.headers,
+      [
+        '날짜',
+        '일자'
+      ]
+    );
+
+
+  const sTime =
+    flexibleColumn(
+      schedule.headers,
+      [
+        '시간'
+      ]
+    );
+
+
+  const sTitle =
+    flexibleColumn(
+      schedule.headers,
+      [
+        '일정',
+        '일정명'
+      ]
+    );
+
+
+  const sCategory =
+    flexibleColumn(
+      schedule.headers,
+      [
+        '구분'
+      ]
+    );
+
+
+  const sPlace =
+    flexibleColumn(
+      schedule.headers,
+      [
+        '장소/업체',
+        '장소'
+      ]
+    );
+
+
+  const sStatus =
+    flexibleColumn(
+      schedule.headers,
+      [
+        '상태'
+      ]
+    );
+
+
+  const sMemo =
+    flexibleColumn(
+      schedule.headers,
+      [
+        '메모'
+      ]
+    );
+
+
+  const scheduleItems =
+    schedule
+      .rows
+      .slice(
+        schedule.headerIndex +
+        1
+      )
+      .map(
+        row => ({
+
+          date:
+            sDate >= 0
+              ? parseDate(
+                  row[
+                    sDate
+                  ]
+                )
+              : null,
+
+          time:
+            sTime >= 0
+              ? clean(
+                  row[
+                    sTime
+                  ]
+                )
+              : '',
+
+          title:
+            sTitle >= 0
+              ? clean(
+                  row[
+                    sTitle
+                  ]
+                )
+              : '일정',
+
+          category:
+            sCategory >= 0
+              ? clean(
+                  row[
+                    sCategory
+                  ]
+                )
+              : '',
+
+          place:
+            sPlace >= 0
+              ? clean(
+                  row[
+                    sPlace
+                  ]
+                )
+              : '',
+
+          status:
+            sStatus >= 0
+              ? clean(
+                  row[
+                    sStatus
+                  ]
+                )
+              : '',
+
+          memo:
+            sMemo >= 0
+              ? clean(
+                  row[
+                    sMemo
+                  ]
+                )
+              : ''
+
+        })
+      )
+      .filter(
+        item =>
+          item.date &&
+          !item.status.includes(
+            '취소'
+          )
+      );
+
+
+  const upcoming =
+    scheduleItems
+      .filter(
+        item =>
+          item.date >=
+          today
+          &&
+          !item.status.includes(
+            '완료'
+          )
+      )
+      .sort(
+        (
+          a,
+          b
+        ) =>
+          a.date -
+          b.date
+      )
+      .slice(
+        0,
+        8
+      );
+
+
+  $('scheduleList')
+    .innerHTML =
+    upcoming.length
+      ? upcoming
+          .map(
+            item => {
+
+
+              const days =
+                Math.ceil(
+                  (
+                    item.date -
+                    today
+                  ) /
+                  86400000
+                );
+
+
+              return listRow(
+                item.title,
+
+                [
+                  formatDate(
+                    item.date
+                  ),
+                  item.time,
+                  item.place
+                ]
+                .filter(Boolean)
+                .join(
+                  ' · '
+                ),
+
+                `
+                  <span class="badge">
+                    ${
+                      days === 0
+                        ? '오늘'
+                        : `${days}일 후`
+                    }
+                  </span>
+                `
+              );
+
+            }
+          )
+          .join('')
+      : '<div class="empty">다가오는 일정이 없습니다.</div>';
+
+
+  /* =========================
+     CALENDAR
+  ========================= */
+
+
+  let cursor =
+    new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      1
+    );
+
+
+  function renderCalendar(){
+
+    const year =
+      cursor
+        .getFullYear();
+
+
+    const month =
+      cursor
+        .getMonth();
+
+
+    $('calendarMonth')
+      .textContent =
+      `${year}. ${
+        String(
+          month +
+          1
+        )
+        .padStart(
+          2,
+          '0'
+        )
+      }`;
+
+
+    $('calendarDow')
+      .innerHTML =
+      [
+        '일',
+        '월',
+        '화',
+        '수',
+        '목',
+        '금',
+        '토'
+      ]
+      .map(
+        d =>
+          `<div class="dow">${d}</div>`
+      )
+      .join('');
+
+
+    const first =
+      new Date(
+        year,
+        month,
+        1
+      );
+
+
+    const start =
+      new Date(
+        year,
+        month,
+        1 -
+        first.getDay()
+      );
+
+
+    let html =
+      '';
+
+
+    for(
+      let i=0;
+      i<42;
+      i++
+    ){
+
+      const d =
+        new Date(
+          start
+        );
+
+
+      d.setDate(
+        start.getDate() +
+        i
+      );
+
+
+      const events =
+        scheduleItems.filter(
+          event =>
+            event.date.getFullYear() ===
+              d.getFullYear()
+            &&
+            event.date.getMonth() ===
+              d.getMonth()
+            &&
+            event.date.getDate() ===
+              d.getDate()
+        );
+
+
+      const key =
+        `${d.getFullYear()}-${
+          String(
+            d.getMonth()+1
+          )
+          .padStart(
+            2,
+            '0'
+          )
+        }-${
+          String(
+            d.getDate()
+          )
+          .padStart(
+            2,
+            '0'
+          )
+        }`;
+
+
+      html += `
+        <div
+          class="day ${
+            d.getMonth() ===
+            month
+              ? ''
+              : 'muted'
+          } ${
+            d.getTime() ===
+            today.getTime()
+              ? 'today'
+              : ''
+          } ${
+            events.length
+              ? 'hasEvent'
+              : ''
+          }"
+          data-date="${key}"
+        >
+
+          <div class="dayNum">
+            ${
+              d.getDate()
+            }
+          </div>
+
+          ${
+            events
+              .slice(
+                0,
+                2
+              )
+              .map(
+                event => `
+                  <div
+                    class="calEvent ${
+                      event.status.includes(
+                        '완료'
+                      )
+                        ? 'sage'
+                        : ''
+                    }"
+                  >
+                    ${
+                      escapeHtml(
+                        event.title
+                      )
+                    }
+                  </div>
+                `
+              )
+              .join('')
+          }
+
+        </div>
+      `;
+
+    }
+
+
+    $('calendarGrid')
+      .innerHTML =
+      html;
+
+
+    document
+      .querySelectorAll(
+        '.day.hasEvent'
+      )
+      .forEach(
+        el => {
+
+          el.onclick =
+            () => {
+
+
+              const d =
+                parseDate(
+                  el
+                    .dataset
+                    .date
+                );
+
+
+              const events =
+                scheduleItems.filter(
+                  event =>
+                    event.date.getFullYear() ===
+                      d.getFullYear()
+                    &&
+                    event.date.getMonth() ===
+                      d.getMonth()
+                    &&
+                    event.date.getDate() ===
+                      d.getDate()
+                );
+
+
+              openModal(
+                d,
+                events
+              );
+
+            };
+
+        }
+      );
+
+  }
+
+
+  function animateCalendar(
+    direction
+  ){
+
+    const grid =
+      $('calendarGrid');
+
+
+    grid.style.transition =
+      'none';
+
+
+    grid.style.opacity =
+      '.4';
+
+
+    grid.style.transform =
+      direction ===
+      'next'
+        ? 'translateX(18px)'
+        : 'translateX(-18px)';
+
+
+    renderCalendar();
+
+
+    requestAnimationFrame(
+      () => {
+
+        requestAnimationFrame(
+          () => {
+
+            grid.style.transition =
+              'transform .22s ease, opacity .22s ease';
+
+
+            grid.style.transform =
+              'translateX(0)';
+
+
+            grid.style.opacity =
+              '1';
+
+          }
+        );
+
+      }
+    );
+
+
+    setTimeout(
+      () => {
+
+        grid.style.transition =
+          '';
+
+        grid.style.transform =
+          '';
+
+        grid.style.opacity =
+          '';
+
+      },
+      250
+    );
+
+  }
+
+
+  function goPrevMonth(){
+
+    cursor =
+      new Date(
+        cursor.getFullYear(),
+        cursor.getMonth()-1,
+        1
+      );
+
+
+    animateCalendar(
+      'prev'
+    );
+
+  }
+
+
+  function goNextMonth(){
+
+    cursor =
+      new Date(
+        cursor.getFullYear(),
+        cursor.getMonth()+1,
+        1
+      );
+
+
+    animateCalendar(
+      'next'
+    );
+
+  }
+
+
+  $('calPrev')
+    .onclick =
+    goPrevMonth;
+
+
+  $('calNext')
+    .onclick =
+    goNextMonth;
+
+
+  renderCalendar();
+
+
+  /* =========================
+     MOBILE CALENDAR SWIPE
+  ========================= */
+
+
+  const calendarSwipeArea =
+    $('calendarGrid');
+
+
+  let touchStartX =
+    0;
+
+
+  let touchStartY =
+    0;
+
+
+  const SWIPE_THRESHOLD =
+    45;
+
+
+  calendarSwipeArea
+    .addEventListener(
+      'touchstart',
+      event => {
+
+
+        if(
+          !event.changedTouches ||
+          !event.changedTouches.length
+        ){
+          return;
+        }
+
+
+        touchStartX =
+          event
+            .changedTouches[0]
+            .clientX;
+
+
+        touchStartY =
+          event
+            .changedTouches[0]
+            .clientY;
+
+      },
+      {
+        passive:true
+      }
+    );
+
+
+  calendarSwipeArea
+    .addEventListener(
+      'touchend',
+      event => {
+
+
+        if(
+          !event.changedTouches ||
+          !event.changedTouches.length
+        ){
+          return;
+        }
+
+
+        const touchEndX =
+          event
+            .changedTouches[0]
+            .clientX;
+
+
+        const touchEndY =
+          event
+            .changedTouches[0]
+            .clientY;
+
+
+        const diffX =
+          touchEndX -
+          touchStartX;
+
+
+        const diffY =
+          touchEndY -
+          touchStartY;
+
+
+        if(
+          Math.abs(
+            diffY
+          ) >
+          Math.abs(
+            diffX
+          )
+        ){
+          return;
+        }
+
+
+        if(
+          Math.abs(
+            diffX
+          ) <
+          SWIPE_THRESHOLD
+        ){
+          return;
+        }
+
+
+        if(
+          diffX < 0
+        ){
+
+          goNextMonth();
+
+        }
+        else{
+
+          goPrevMonth();
+
+        }
+
+      },
+      {
+        passive:true
+      }
+    );
+
+
+  /* =========================
+     VENDORS
+  ========================= */
+
+
+  const vendors =
+    analyzeTable(
+      data.vendors,
+      [
+        '업체',
+        '상태'
+      ]
+    );
+
+
+  const vName =
+    flexibleColumn(
+      vendors.headers,
+      [
+        '업체명',
+        '업체'
+      ]
+    );
+
+
+  const vCategory =
+    flexibleColumn(
+      vendors.headers,
+      [
+        '카테고리',
+        '구분'
+      ]
+    );
+
+
+  const vStatus =
+    flexibleColumn(
+      vendors.headers,
+      [
+        '진행상태',
+        '상태'
+      ]
+    );
+
+
+  const vendorRows =
+    vendors
+      .rows
+      .slice(
+        vendors.headerIndex +
+        1
+      )
+      .filter(
+        row =>
+          vName >= 0 &&
+          clean(
+            row[
+              vName
+            ]
+          )
+      );
+
+
+  $('vendorList')
+    .innerHTML =
+    vendorRows.length
+      ? vendorRows
+          .map(
+            row =>
+              listRow(
+                row[
+                  vName
+                ],
+
+                vCategory >= 0
+                  ? row[
+                      vCategory
+                    ]
+                  : '',
+
+                badge(
+                  vStatus >= 0
+                    ? row[
+                        vStatus
+                      ]
+                    : ''
+                ),
+
+                true
+              )
+          )
+          .join('')
+      : '<div class="empty">업체 정보가 없습니다.</div>';
+
+
+  /* =========================
+     GUESTS
+  ========================= */
+
+
+  const guest =
+    data.guestSummary ||
+    {};
+
+
+  $('guestTotal')
+    .textContent =
+    guest.total ||
+    0;
+
+
+  $('guestConfirmed')
+    .textContent =
+    guest.confirmed ||
+    0;
+
+
+  $('guestUndecided')
+    .textContent =
+    guest.undecided ||
+    0;
+
+
+  $('guestDeclined')
+    .textContent =
+    guest.declined ||
+    0;
+
+
+  /* =========================
+     HONEYMOON
+  ========================= */
+
+
+  const honeymoon =
+    validRows(
+      data.honeymoon
+    )
+    .slice(
+      0,
+      8
+    );
+
+
+  $('honeymoon')
+    .innerHTML =
+    honeymoon.length
+      ? honeymoon
+          .map(
+            row =>
+              listRow(
+                row
+                  .filter(
+                    cell =>
+                      clean(
+                        cell
+                      )
+                  )
+                  .join(
+                    ' · '
+                  ),
+                '',
+                '',
+                true
+              )
+          )
+          .join('')
+      : '<div class="empty">신혼여행 정보가 없습니다.</div>';
+
+
+  /* =========================
+     NOTES
+  ========================= */
+
+
+  const notes =
+    validRows(
+      data.notes
+    )
+    .slice(
+      -5
+    )
+    .reverse();
+
+
+  $('notes')
+    .innerHTML =
+    notes.length
+      ? notes
+          .map(
+            row => `
+              <div class="softBox">
+
+                ${
+                  escapeHtml(
+                    row
+                      .filter(
+                        cell =>
+                          clean(
+                            cell
+                          )
+                      )
+                      .join(
+                        ' · '
+                      )
+                  )
+                }
+
+              </div>
+            `
+          )
+          .join('')
+      : '<div class="empty">메모가 없습니다.</div>';
+
+}
+
+
+/* =========================
+   CALENDAR MODAL
+========================= */
+
+
+function openModal(
+  date,
+  events
+){
+
+  $('calModalDate')
+    .textContent =
+    `${date.getFullYear()}년 ${date.getMonth()+1}월 ${date.getDate()}일`;
+
+
+  $('calModalBody')
+    .innerHTML =
+    events
+      .map(
+        item => `
+          <div class="calDetail">
+
+            <strong>
+              ${
+                escapeHtml(
+                  item.title
+                )
+              }
+            </strong>
+
+            <div>
+              ${
+                [
+                  item.time,
+                  item.category,
+                  item.place,
+                  item.status,
+                  item.memo
+                ]
+                .filter(Boolean)
+                .map(
+                  escapeHtml
+                )
+                .join(
+                  ' · '
+                )
+              }
+            </div>
+
+          </div>
+        `
+      )
+      .join('');
+
+
+  $('calModal')
+    .classList
+    .add(
+      'open'
+    );
+
+}
+
+
+$('modalClose')
+  .onclick =
+  () =>
+    $('calModal')
+      .classList
+      .remove(
+        'open'
+      );
+
+
+$('calModal')
+  .onclick =
+  event => {
+
+    if(
+      event.target ===
+      $('calModal')
+    ){
+
+      $('calModal')
+        .classList
+        .remove(
+          'open'
+        );
+
+    }
+
+  };
+
+
+/* =========================
+   NAV
+========================= */
+
+
+document
+  .querySelectorAll(
+    '.tabBtn'
+  )
+  .forEach(
+    button => {
+
+
+      button.onclick =
+        () => {
+
+
+          const tab =
+            button
+              .dataset
+              .tab;
+
+
+          document
+            .querySelectorAll(
+              '.tabBtn'
+            )
+            .forEach(
+              b =>
+                b
+                  .classList
+                  .remove(
+                    'active'
+                  )
+            );
+
+
+          document
+            .querySelectorAll(
+              '.tabPage'
+            )
+            .forEach(
+              page =>
+                page
+                  .classList
+                  .remove(
+                    'active'
+                  )
+            );
+
+
+          button
+            .classList
+            .add(
+              'active'
+            );
+
+
+          document
+            .querySelector(
+              `[data-page="${tab}"]`
+            )
+            .classList
+            .add(
+              'active'
+            );
+
+
+          window.scrollTo({
+
+            top:0,
+            behavior:'smooth'
+
+          });
+
+        };
+
+    }
+  );
+
+
+/* =========================
+   ERROR
+========================= */
+
+
+function showError(
+  error
+){
+
+  const box =
+    $('error');
+
+
+  box.style.display =
+    'block';
+
+
+  box.textContent =
+    '데이터를 불러오지 못했습니다. ' +
+    (
+      error &&
+      error.message
+        ? error.message
+        : '잠시 후 다시 시도해 주세요.'
+    );
+
+}
+
+
+/* =========================
+   GOOGLE SHEETS
+========================= */
+
+
+google.script.run
+  .withSuccessHandler(
+    renderDashboard
+  )
+  .withFailureHandler(
+    showError
+  )
+  .getDashboardData();
+
+
+</script>
+
+
 </body>
 </html>
